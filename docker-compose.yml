@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  property-notifier:
+    build: .
+    container_name: property-notifier
+    restart: always
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
+    environment:
+      MONGO_URI: mongodb://mongo:27017/property-notifier
+    depends_on:
+      - mongo
+    networks:
+      - app-net
+    volumes:
+      - .:/app
+  mongo:
+    image: mongo:5.0
+    container_name: mongodb-property-notifier
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-net
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-net
+volumes:
+  mongo-data:
+  node_modules_property:
+networks:
+  app-net:
