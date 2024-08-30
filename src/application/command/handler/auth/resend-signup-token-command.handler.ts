@@ -3,7 +3,7 @@ import { BadRequestException, Inject } from '@nestjs/common';
 import { IUserRepository } from 'src/domain/adapters/repository.interface';
 import { ResendsignUpTokenCommand } from '../../impl/auth/resend-singup-token-command';
 import { UserEntityFactory } from 'src/domain/entityFactories/UserEntity.factory';
-// import { I18nService } from 'nestjs-i18n';
+import { I18nService } from 'nestjs-i18n';
 
 
 
@@ -15,7 +15,7 @@ export class ResendsignUpTokenCommandHandler implements ICommandHandler<Resendsi
     private readonly userRepository: IUserRepository,
     private readonly userFactory: UserEntityFactory,
     private readonly eventPublisher: EventPublisher,
-    // private readonly i18nService: I18nService
+    private readonly i18nService: I18nService
   ) {}
 
   async execute({resendSignupTokenDto}: ResendsignUpTokenCommand): Promise<any> {
@@ -27,9 +27,9 @@ export class ResendsignUpTokenCommandHandler implements ICommandHandler<Resendsi
     );
     if(!user){
       throw new BadRequestException(
-        "error.USER_NOT_FOUND"
-        // this.i18nService.t(
-        // )
+        this.i18nService.t(
+          "error.USER_NOT_FOUND"
+        )
       )
     }
 
@@ -39,9 +39,9 @@ export class ResendsignUpTokenCommandHandler implements ICommandHandler<Resendsi
     
     return {
       message: 
-      // this.i18nService.t(
+      this.i18nService.t(
         "success.TOKEN_SEND"
-      // ),
+      ),
     }
   }
 }

@@ -7,6 +7,7 @@ import { VerifySignupTokenCommand } from "../../impl/auth/verify-signup.command"
 import { IUserRepository } from "src/domain/adapters/repository.interface";
 import { JWTConfig } from "src/domain/adapters/jwt.interface";
 import { IJwtService, IJwtServicePayload } from "src/infrustructure/adapters/jwt-service.interface";
+import { I18nService } from 'nestjs-i18n';
 
 
 
@@ -23,7 +24,8 @@ export class VerifySignUpTokenCommandHandler implements ICommandHandler<VerifySi
         @Inject("JwtConfig")
         private readonly jwtConfig: JWTConfig,
         @Inject("BcryptService")
-        private readonly bcryptService: IBcryptService
+        private readonly bcryptService: IBcryptService,
+        private readonly i18nService: I18nService
         ){}
 
     async execute({verifySignUpTokenDto}: VerifySignupTokenCommand): Promise<any> {
@@ -32,7 +34,7 @@ export class VerifySignUpTokenCommandHandler implements ICommandHandler<VerifySi
         const cachedUuid = await this.cacheManager.get(phone_number);
         // check for UUID
         if(uuid !== cachedUuid){
-            throw new BadRequestException("error.TOKEN_IS_NOT_VALID")
+            throw new BadRequestException(this.i18nService.t("error.TOKEN_IS_NOT_VALID"))
         }
         // activate user
         const user = await this.userRepository.findByPhoneNumber(phone_number);

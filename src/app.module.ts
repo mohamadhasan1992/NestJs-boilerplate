@@ -48,7 +48,7 @@ import { PropertySchema } from './infrustructure/schema/property.schema';
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
-        path: path.join(__dirname, '/i18n/'),
+        path: path.join(__dirname, '../src/i18n/'),
         watch: true,
       },
       resolvers: [

@@ -22,8 +22,8 @@ import { CurrentUser } from 'src/infrustructure/decorators/current-user.decorato
 
 
 
-@Controller('panel/auth')
-export class PanelAuthController {
+@Controller('auth')
+export class AuthController {
   constructor(
     private readonly commandBus: CommandBus,
 ) {}

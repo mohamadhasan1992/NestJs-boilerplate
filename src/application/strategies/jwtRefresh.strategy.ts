@@ -7,6 +7,7 @@ import { LoggerService } from 'src/infrustructure/logger/logger.service';
 import { TokenPayload } from 'src/infrustructure/adapters/token-payload.interface';
 import { IBcryptService } from 'src/infrustructure/adapters/bcrypt.interface';
 import { IUserRepository } from 'src/domain/adapters/repository.interface';
+import { I18nService } from 'nestjs-i18n';
 
 
 
@@ -18,7 +19,8 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
     @Inject("UserRepository")
     private readonly userRepository: IUserRepository,
     @Inject("BcryptService")
-    private readonly bcryptService: IBcryptService
+    private readonly bcryptService: IBcryptService,
+    private readonly i18nService: I18nService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
@@ -49,7 +51,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
       };;
     }else{
       this.logger.warn('JwtStrategy', `User not found or hash not correct`);
-      throw new UnauthorizedException({ message: 'error.REFRESH_TKONE_UNVALID' });
+      throw new UnauthorizedException(this.i18nService.t('error.REFRESH_TKONE_UNVALID'));
     }
 
   }

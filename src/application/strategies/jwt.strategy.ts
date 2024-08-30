@@ -5,6 +5,7 @@ import { Request } from 'express';
 import { LoggerService } from 'src/infrustructure/logger/logger.service';
 import { TokenPayload } from 'src/infrustructure/adapters/token-payload.interface';
 import { IUserRepository } from 'src/domain/adapters/repository.interface';
+import { I18nService } from 'nestjs-i18n';
 
 
 
@@ -13,7 +14,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     private readonly logger: LoggerService,
     @Inject("UserRepository")
-    private readonly userRepository: IUserRepository
+    private readonly userRepository: IUserRepository,
+    private readonly i18nService: I18nService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
@@ -32,7 +34,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
     if (!user) {
       this.logger.warn('JwtStrategy', `User not found`);
-      throw new UnauthorizedException('error.USER_NOT_FOUND')
+      throw new UnauthorizedException(this.i18nService.t('error.USER_NOT_FOUND'))
     }
     return {
       _id: user.getId(),
