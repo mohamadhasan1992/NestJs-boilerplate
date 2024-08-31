@@ -19,7 +19,7 @@ import { EnvironmentConfigService } from './infrustructure/config/environment-co
 import { BcryptService } from './infrustructure/services/bcrypt/bcrypt.service';
 import { UserSchemaFactory } from './infrustructure/schema-factory/user-schema.factory';
 import { UserEntityFactory } from './domain/entityFactories/UserEntity.factory';
-import { AuthStrategies } from './application/strategies';
+import { AuthStrategies } from './presentation/strategies';
 import { CommandHandlers } from './application/command';
 import { QueryHandlers } from './application/query';
 import { EventHandlers } from './application/event';

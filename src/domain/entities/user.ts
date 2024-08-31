@@ -1,7 +1,7 @@
 import { AggregateRoot } from "@nestjs/cqrs";
 import { RoleEnum } from "../object-values/Role.enum";
 import { UserStatusEnum } from "../object-values/user-status.enum";
-import { UserSignedUpEvent } from "src/application/event/impl/auth/user-signed-up-event";
+import { UserSignedUpEvent } from "src/domain/events/impl/auth/user-signed-up-event";
 
 
 export class User extends AggregateRoot{

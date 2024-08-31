@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { whatsAppService } from 'src/infrustructure/whatspp/whatsapp.service';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 import { randomUUID } from 'crypto';
-import { UserSignedUpEvent } from '../../impl/auth/user-signed-up-event';
+import { UserSignedUpEvent } from '../../../../domain/events/impl/auth/user-signed-up-event';
 
 
 

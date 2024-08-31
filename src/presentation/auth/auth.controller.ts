@@ -10,11 +10,11 @@ import { LoginUserDto } from 'src/application/dto/auth/login-user.dto';
 import { ResendSignupTokenDto } from 'src/application/dto/auth/resend-singup-token.dto';
 import { SignUpUserDto } from 'src/application/dto/auth/signup-user.dto';
 import { VerifySignUpTokenDto } from 'src/application/dto/auth/verify-signup.dto';
-import { JwtAuthGuard } from 'src/application/guards/jwtAuth.guard';
-import JwtRefreshGuard from 'src/application/guards/jwtRefresh.guard';
-import { LoginGuard } from 'src/application/guards/login.guard';
+import { JwtAuthGuard } from 'src/presentation/guards/jwtAuth.guard';
+import JwtRefreshGuard from 'src/presentation/guards/jwtRefresh.guard';
+import { LoginGuard } from 'src/presentation/guards/login.guard';
 import { IAuthenticatedUser } from 'src/infrustructure/adapters/authenticated-user.interface';
-import { CurrentUser } from 'src/infrustructure/decorators/current-user.decorator';
+import { CurrentUser } from 'src/presentation/decorators/current-user.decorator';
 
 
 
