@@ -1,13 +1,11 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-
-
-export class VerifySignUpTokenDto{
+export class CreateMessageDto{
     @IsString()
     @IsNotEmpty()
-    phone_number: string;
+    conversation: string;
 
-    @IsNotEmpty()
     @IsString()
-    uuid: string;
+    @IsNotEmpty()
+    content: string;
 }

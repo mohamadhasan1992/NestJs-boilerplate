@@ -1,57 +1,48 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CurrentUser, IAuthenticatedUser } from '@shared/shared';
 import { CreateConversationDto } from '../../application/dto/conversation/createConversation.dto';
 import { CreateConversationCommand } from '../../application/command/impl/conversation/create-conversation.command';
-import { FilterQuery } from 'mongoose';
-import { Message } from '../../domain/entities/message';
 import { GetMessageQuery } from '../../application/query/impl/message/get-message-query';
-import { ConversationSchema } from '../../infrustructure/schema/conversation.schema';
 import { GetConversationQuery } from '../../application/query/impl/conversation/get-conversation-query';
 import { DeleteConversationCommand } from '../../application/command/impl/conversation/delete-conversation.command';
+import { ConversationServiceController, ConversationServiceControllerMethods, FindConversationMessageRequest, FindConversationRequest } from '@shared/shared/proto/messenger';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
 
 
 
-
-@Controller('conversation')
-export class ConversationController {
+@Controller("conversation")
+@ConversationServiceControllerMethods()
+export class ConversationController implements ConversationServiceController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus
   ) {}
 
-  @Post()
+  @MessagePattern('create-conversation')
   async createConversation(
-    @CurrentUser() user: IAuthenticatedUser,
-    @Body() createConversationDto: CreateConversationDto
-
+    @Payload() {createConversationDto, userId}: {createConversationDto: CreateConversationDto, userId: string},
   ){
-    return await this.commandBus.execute(new CreateConversationCommand(user._id, createConversationDto))
+    return await this.commandBus.execute(new CreateConversationCommand(userId, createConversationDto))
+  }
+
+  @MessagePattern('delete-conversation')
+  async deleteConversation(
+    @Payload() {conversationId, userId}: {conversationId: string, userId: string},
+  ){
+    return await this.commandBus.execute(new DeleteConversationCommand(userId, conversationId))
   }
   
-  @Get(":id/message")
-  async listMessage(
-    @Query() filterQuery: FilterQuery<Message>,
-    @CurrentUser() user: IAuthenticatedUser,
-    @Param("id") conversationId: string
+  async findConversationMessage(
+    @Payload() {conversationId, limit, page, userId}: FindConversationMessageRequest
   ){
-    return await this.queryBus.execute(new GetMessageQuery(user._id, conversationId, filterQuery))    
+    return await this.queryBus.execute(new GetMessageQuery(userId, conversationId, {page, limit}))    
   }
 
-  @Get()
-  async listConversation(
-    @Query() filterQuery: FilterQuery<ConversationSchema>,
-    @CurrentUser() user: IAuthenticatedUser,
+  async findConversation(
+    @Payload() {limit, page, userId}: FindConversationRequest
   ){
-    return await this.queryBus.execute(new GetConversationQuery(user._id, filterQuery))
+    return await this.queryBus.execute(new GetConversationQuery(userId, {page, limit}))
   }
 
 
-  @Delete(":id")
-  async deleteConversation(
-    @CurrentUser() user: IAuthenticatedUser,
-    @Param("id") id: string
-  ){
-    return await this.commandBus.execute(new DeleteConversationCommand(user._id, id))
-  }
 }

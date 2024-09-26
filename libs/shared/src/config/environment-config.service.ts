@@ -7,7 +7,10 @@ import { JWTConfig } from '../../../../apps/user-management/src/domain/adapters/
 @Injectable()
 export class EnvironmentConfigService implements DatabaseConfig, JWTConfig {
   constructor(private configService: ConfigService) {}
-  
+  getHttpPort(): string{
+    return this.configService.get<string>('HTTP_PORT');
+  }
+
   getJwtSecret(): string {
     return this.configService.get<string>('JWT_SECRET');
   }

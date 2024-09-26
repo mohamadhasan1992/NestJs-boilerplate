@@ -1,9 +1,9 @@
-import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CurrentUser, IAuthenticatedUser } from '@shared/shared';
 import { CreateMessageDto } from '../../application/dto/message/createMessage.dto';
 import { CreateMessageCommand } from '../../application/command/impl/message/create-message.command';
 import { DeleteMessageCommand } from '../../application/command/impl/message/delete-message.command';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 
 
@@ -14,19 +14,17 @@ export class MessageController {
     private readonly commandBus: CommandBus
   ) {}
 
-  @Post()
+  @MessagePattern('create-message')
   async createMessage(
-    @Body() createMessageDto: CreateMessageDto,
-    @CurrentUser() user: IAuthenticatedUser
+    @Payload() {createMessageDto, userId}: {createMessageDto: CreateMessageDto, userId: string} 
   ){
-    return await this.commandBus.execute(new CreateMessageCommand(user._id, createMessageDto))
+    return await this.commandBus.execute(new CreateMessageCommand(userId, createMessageDto))
   }
 
-  @Delete(":id")
+  @MessagePattern('delete-message')
   async deleteMessage(
-    @Param("id") id: string,
-    @CurrentUser() user: IAuthenticatedUser
+    @Payload() {messageId, userId}: {messageId: string, userId: string} 
   ){
-    return await this.commandBus.execute(new DeleteMessageCommand(id, user._id))
+    return await this.commandBus.execute(new DeleteMessageCommand(messageId, userId))
   }
 }

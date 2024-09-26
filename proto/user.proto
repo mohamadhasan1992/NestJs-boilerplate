@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pb;
+
+
+message User {
+    string fullName = 1;
+    string email = 2;
+    string status = 3;
+}
+
+message GetUserRequest {
+    string userId = 1;
+}
+
+message GetUserResponse{
+    User user = 1;
+}
+
+
+service AuthService {
+    rpc GetMe(GetUserRequest) returns (GetUserResponse) {}
+}

@@ -10,6 +10,10 @@ import { LoggerService } from '@shared/shared/logger/logger.service';
 import { JwtTokenService } from '@shared/shared/jwt/jwt.service';
 import { EnvironmentConfigService } from '@shared/shared/config/environment-config.service';
 import { BcryptService } from '@shared/shared/bcrypt/bcrypt.service';
+import { SchemaFactory } from '@nestjs/mongoose';
+import { ConversationSchema } from './infrustructure/schema/conversation.schema';
+import { MessageSchema } from './infrustructure/schema/message.schema';
+import { AllControllers } from './presentation';
 
 
 
@@ -19,6 +23,14 @@ import { BcryptService } from '@shared/shared/bcrypt/bcrypt.service';
     EnvironmentConfigModule.forRoot(`./env/${process.env.NODE_ENV}.env`, validate),
     DatabaseModule,
     DatabaseModule.forFeature([
+      {
+        name: "Conversation",
+        schema: SchemaFactory.createForClass(ConversationSchema)
+      },
+      {
+        name: "Message",
+        schema: SchemaFactory.createForClass(MessageSchema)
+      }
     ]),
     I18nModule.forRoot({
       fallbackLanguage: 'en',
@@ -38,7 +50,7 @@ import { BcryptService } from '@shared/shared/bcrypt/bcrypt.service';
     JwtServiceModule,
     CqrsModule,
   ],
-  controllers: [],
+  controllers: AllControllers,
   providers: [
     {provide: "LoggerService", useClass: LoggerService},
     {provide: "JwtService", useClass: JwtTokenService},

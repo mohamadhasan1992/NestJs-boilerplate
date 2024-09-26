@@ -7,3 +7,4 @@ export * from "./config/environment-config.module";
 export * from "./interceptors/logger.interceptor"
 export * from "./filter/exception.filter"
 export * from "./decorators/current-user.decorator"
+export * from "./kafka"

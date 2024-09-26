@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+
+message Message {
+    Conversation conversation = 1;
+    string sender = 2;
+    string content = 3;
+    string status = 4;
+    google.protobuf.Timestamp created_at = 5;
+};
+
+message PaginationData{
+    int64 page = 1;
+    int64 limit = 2;
+    int64 totalDocument = 3;
+}
+
+message Conversation {
+    string creator = 1;
+    string recipient = 2;
+    Message last_message = 3;
+    google.protobuf.Timestamp last_message_sent_at = 4;
+    google.protobuf.Timestamp created_at = 5;
+};
+
+message FindConversationMessageRequest{
+    int64 page = 1;
+    int64 limit = 2;
+    string userId = 3;
+    string conversationId = 4;
+}
+
+
+message FindConversationMessageResponse {
+    repeated Message data = 1;
+    PaginationData paginationData = 2;
+}
+
+
+message FindConversationRequest{
+    int64 page = 1;
+    int64 limit = 2;
+    string userId = 3;
+}
+
+
+message FindConversationResponse {
+    repeated Conversation data = 1;
+    PaginationData paginationData = 2;
+}
+
+service ConversationService{
+    rpc findConversationMessage(FindConversationMessageRequest) returns (FindConversationMessageResponse){}
+    rpc findConversation(FindConversationRequest) returns (FindConversationResponse) {}
+}

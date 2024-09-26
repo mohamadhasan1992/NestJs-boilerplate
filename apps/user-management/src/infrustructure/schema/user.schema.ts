@@ -14,9 +14,6 @@ export class UserSchema extends IdentifiableEntitySchema {
     @Prop({type: String, enum: UserStatusEnum, default: UserStatusEnum.WaitingForActivation})
     status: UserStatusEnum;
 
-    @Prop({type: String, unique: true})
-    phone_number: string;
-
     @Prop({type: String})
     password: string;
 
