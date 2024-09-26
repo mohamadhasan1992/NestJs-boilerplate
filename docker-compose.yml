@@ -10,8 +10,6 @@ services:
     ports:
       - '3000:3000'
     command: npm run start:dev user-management
-    environment:
-      MONGO_URI: mongodb://mongo:27017/user-management
     depends_on:
       - mongo
     networks:
@@ -28,8 +26,6 @@ services:
     ports:
       - '4000:4000'
     command: npm run start:dev messenger
-    environment:
-      MONGO_URI: mongodb://mongo:27017/user-management
     depends_on:
       - mongo
     networks:
@@ -39,7 +35,7 @@ services:
       - /app/node_modules
   mongo:
     image: mongo:5.0
-    container_name: mongodb-boilerplate
+    container_name: mongodb
     restart: always
     ports:
       - '27017:27017'
