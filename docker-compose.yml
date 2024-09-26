@@ -1,24 +1,45 @@
 version: '3.8'
 
 services:
-  property-notifier:
-    build: .
-    container_name: property-notifier
+  user-management:
+    build:
+      context: .
+      dockerfile: ./apps/user-management/Dockerfile
+    container_name: user-management
     restart: always
     ports:
       - '3000:3000'
-    command: npm run start:dev
+    command: npm run start:dev user-management
     environment:
-      MONGO_URI: mongodb://mongo:27017/property-notifier
+      MONGO_URI: mongodb://mongo:27017/user-management
     depends_on:
       - mongo
     networks:
       - app-net
     volumes:
       - .:/app
+      - /app/node_modules
+  messenger:
+    build:
+      context: .
+      dockerfile: ./apps/messenger/Dockerfile
+    container_name: messenger
+    restart: always
+    ports:
+      - '4000:4000'
+    command: npm run start:dev messenger
+    environment:
+      MONGO_URI: mongodb://mongo:27017/user-management
+    depends_on:
+      - mongo
+    networks:
+      - app-net
+    volumes:
+      - .:/app
+      - /app/node_modules
   mongo:
     image: mongo:5.0
-    container_name: mongodb-property-notifier
+    container_name: mongodb-boilerplate
     restart: always
     ports:
       - '27017:27017'
@@ -34,8 +55,10 @@ services:
       - "6379:6379"
     networks:
       - app-net
+    volumes:
+      - redis-data:/data
 volumes:
   mongo-data:
-  node_modules_property:
+  redis-data:
 networks:
   app-net:

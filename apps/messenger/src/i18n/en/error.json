@@ -1,0 +1,6 @@
+{
+    "CONVERSATION_NOT_FOUND": "conversation not found!",
+    "MESSAGE_NOT_FOUND": "conversation not found!",
+    "MESSAGE_NOT_YOURS": "Message is not yours",
+    "CONVERSATION_NOT_YOURS": "Conversation is not yours"
+}
