@@ -34,10 +34,9 @@ export class AuthController implements AuthServiceController {
     async login(
         @Payload() loginUserDto: LoginUserDto,
     ) {
-        const {accessToken, refreshToken} = await this.commandBus.execute(new LoginCommand(loginUserDto))
+        const {accessToken} = await this.commandBus.execute(new LoginCommand(loginUserDto))
         return {
-            accessToken,
-            refreshToken
+            accessToken
         }
     }
 

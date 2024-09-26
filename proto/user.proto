@@ -7,7 +7,6 @@ message User {
     string ID = 1;
     string fullName = 2;
     string email = 3;
-    string status = 4;
 }
 
 message GetUserRequest {
@@ -26,8 +25,7 @@ message GetUserByEmailResponse{
     string ID = 1;
     string fullName = 2;
     string email = 3;
-    string status = 4;
-    string password = 5;
+    string password = 4;
 }
 
 

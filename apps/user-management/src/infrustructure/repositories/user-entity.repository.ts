@@ -22,10 +22,4 @@ export class UserEntityRepository extends BaseEntityRepository<UserSchema, User>
         return await this.findOne({email})
     }
 
-    async updateRefreshToken(_id: string, token: string){
-        const user = await this.findOneById(_id);
-        user.setRefreshToken(token)
-        return await this.findOneAndReplace({_id}, user)
-    }
-
 }

@@ -4,6 +4,7 @@ import { LoginCommand } from '../../impl/auth/login.command';
 import { IUserRepository } from 'apps/user-management/src/domain/adapters/repository.interface';
 import { IBcryptService, IJwtService, IJwtServicePayload } from '@shared/shared';
 import { JWTConfig } from 'apps/user-management/src/domain/adapters/jwt.interface';
+import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 
 
 
@@ -18,7 +19,8 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     @Inject("JwtConfig")
     private readonly jwtConfig: JWTConfig,
     @Inject("BcryptService")
-    private readonly bcryptService: IBcryptService
+    private readonly bcryptService: IBcryptService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async execute({loginUserDto}: LoginCommand){
@@ -32,16 +34,10 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     const jwtExpiresIn = this.jwtConfig.getJwtExpirationTime() + 's';
     const token = this.jwtTokenService.createToken(payload, jwtSecret, jwtExpiresIn);
     
-    const refreshSecret = this.jwtConfig.getJwtRefreshSecret();
-    const refreshExpiresIn = this.jwtConfig.getJwtRefreshExpirationTime() + 's';
-    const refreshToken = this.jwtTokenService.createToken(payload, refreshSecret, refreshExpiresIn);
-    await this.setCurrentRefreshToken(refreshToken, user.getId());
-    return { accessToken: token, refreshToken };
+    // cache user
+    await this.cacheManager.set(user.getId(), user, parseInt(this.jwtConfig.getJwtExpirationTime()))
+    return { accessToken: token };
   }
 
 
-  async setCurrentRefreshToken(refreshToken: string, userId: string) {
-    const currentHashedRefreshToken = await this.bcryptService.hash(refreshToken);
-    await this.userRepository.updateRefreshToken(userId, currentHashedRefreshToken);
-  }
 }

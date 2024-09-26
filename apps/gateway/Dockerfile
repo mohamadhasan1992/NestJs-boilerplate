@@ -3,17 +3,26 @@ FROM node:18 AS builder
 ARG NODE_ENV=local
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
+
+# Install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci
+
+# Copy source code and build
 COPY . .
 RUN npm run build
 
 # Stage 2: Production
 FROM node:18-alpine
 WORKDIR /app
+
+# Copy built application and install production dependencies
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
-COPY /proto /app/dist/proto
-RUN npm install -g @nestjs/cli
-RUN npm install --only=production
+COPY --from=builder /app/proto ./dist/proto
+RUN npm ci --only=production
+
+# Expose the port
+EXPOSE 2000
+
 CMD [ "node", "dist/apps/gateway/main" ]

@@ -13,8 +13,6 @@ export class UserSchema extends IdentifiableEntitySchema {
     @Prop({type: String})
     password: string;
 
-    @Prop()
-    refreshToken?: string;
 }
 
 

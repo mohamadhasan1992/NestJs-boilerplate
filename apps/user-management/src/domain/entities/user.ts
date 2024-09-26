@@ -8,7 +8,6 @@ export class User extends AggregateRoot{
       private fullName: string,
       private email: string,
       private password: string,
-      private refreshToken: string,
     ) {
       super()
     }
@@ -26,18 +25,10 @@ export class User extends AggregateRoot{
     }
 
     
-    getRefreshToken(): string{
-      return this.refreshToken;
-    }
-
     getPassword(): string{
       return this.password;
     }
 
-
-    setRefreshToken(token: string): void{
-      this.refreshToken = token;
-    }
 
     setPassword(password: string): void{
       this.password = password;

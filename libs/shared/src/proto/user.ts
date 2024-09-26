@@ -14,7 +14,6 @@ export interface User {
   ID: string;
   fullName: string;
   email: string;
-  status: string;
 }
 
 export interface GetUserRequest {
@@ -33,7 +32,6 @@ export interface GetUserByEmailResponse {
   ID: string;
   fullName: string;
   email: string;
-  status: string;
   password: string;
 }
 

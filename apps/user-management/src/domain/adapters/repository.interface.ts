@@ -12,5 +12,4 @@ export interface IUserRepository {
     findOneById(id: string): Promise<User | null>;
     findOne(filterQuery: FilterQuery<User>): Promise<User|null>,
     findAll(): Promise<User[]>;
-    updateRefreshToken(userId: string, token: string): Promise<User | null>
 }
