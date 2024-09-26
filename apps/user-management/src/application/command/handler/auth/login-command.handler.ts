@@ -23,10 +23,10 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
 
   async execute({loginUserDto}: LoginCommand){
     const {
-      phone_number,
+      email,
     } = loginUserDto;
     // find user
-    const user = await this.userRepository.findByPhoneNumber(phone_number);
+    const user = await this.userRepository.findByEmail(email);
     const payload: IJwtServicePayload = { userId: user.getId() };
     const jwtSecret = this.jwtConfig.getJwtSecret();
     const jwtExpiresIn = this.jwtConfig.getJwtExpirationTime() + 's';
@@ -36,7 +36,7 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     const refreshExpiresIn = this.jwtConfig.getJwtRefreshExpirationTime() + 's';
     const refreshToken = this.jwtTokenService.createToken(payload, refreshSecret, refreshExpiresIn);
     await this.setCurrentRefreshToken(refreshToken, user.getId());
-    return { accessTokenCookie: token, refreshTokenCookie: refreshToken };
+    return { accessToken: token, refreshToken };
   }
 
 

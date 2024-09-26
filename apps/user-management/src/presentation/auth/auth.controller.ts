@@ -3,10 +3,11 @@ import { SignUpUserDto } from '../../application/dto/auth/signup-user.dto';
 import { SignUpCommand } from '../../application/command/impl/auth/signup.command';
 import { LoginUserDto } from '../../application/dto/auth/login-user.dto';
 import { LoginCommand } from '../../application/command/impl/auth/login.command';
-import { AuthServiceController, AuthServiceControllerMethods, GetUserRequest } from '@shared/shared/proto/user';
+import { AuthServiceController, AuthServiceControllerMethods, GetUserByEmailRequest, GetUserRequest } from '@shared/shared/proto/user';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { GetMeQuery } from '../../application/query/impl/auth/get-me-query';
 import { Controller } from '@nestjs/common';
+import { GetUserByEmailQuery } from '../../application/query/impl/auth/get-user-by-email.query';
 
 
 
@@ -33,7 +34,7 @@ export class AuthController implements AuthServiceController {
     async login(
         @Payload() loginUserDto: LoginUserDto,
     ) {
-        const {accessTokenCookie: accessToken, refreshTokenCookie: refreshToken} = await this.commandBus.execute(new LoginCommand(loginUserDto))
+        const {accessToken, refreshToken} = await this.commandBus.execute(new LoginCommand(loginUserDto))
         return {
             accessToken,
             refreshToken
@@ -45,6 +46,12 @@ export class AuthController implements AuthServiceController {
     ) {
         const {userId} = getUserRequest;
         return await this.queryBus.execute(new GetMeQuery(userId));
+    }
+
+    async getUserByEmail(
+        @Payload() {email}: GetUserByEmailRequest
+    ) {
+        return await this.queryBus.execute(new GetUserByEmailQuery(email));
     }
 
 }

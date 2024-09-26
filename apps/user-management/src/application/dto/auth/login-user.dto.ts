@@ -5,7 +5,7 @@ import { IsNotEmpty, IsString, IsStrongPassword } from "class-validator";
 export class LoginUserDto{
     @IsString()
     @IsNotEmpty()
-    phone_number: string;
+    email: string;
 
     @IsStrongPassword()
     @IsNotEmpty()

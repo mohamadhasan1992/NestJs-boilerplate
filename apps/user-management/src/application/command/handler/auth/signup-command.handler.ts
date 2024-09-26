@@ -13,7 +13,7 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
   constructor(
     @Inject("UserRepository")
     private readonly userRepository: IUserRepository,
-    private readonly userFactory: UserEntityFactory,
+    private readonly userEntityFactory: UserEntityFactory,
     private readonly eventPublisher: EventPublisher,
     private readonly i18nService: I18nService
   ) {}
@@ -23,9 +23,8 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
       fullName,
       email,
       password,
-      phone_number,
     } = signUpUserDto;
-    const ifUserExists = await this.userRepository.findByPhoneNumber(phone_number);
+    const ifUserExists = await this.userRepository.findByEmail(email);
     if(ifUserExists){
       throw new BadRequestException(
         this.i18nService.t(
@@ -36,9 +35,9 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
 
     // create user
     const newUser = this.eventPublisher.mergeObjectContext(
-      await this.userFactory.create(fullName, email, password, phone_number)
+      await this.userEntityFactory.create(fullName, email, password)
     );
-    newUser.sendSignUpEmail();
+    newUser.userSignedUp();
     newUser.commit();
     
     return {

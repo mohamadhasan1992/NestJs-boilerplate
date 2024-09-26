@@ -1,5 +1,5 @@
 import { Controller, Get, Param, UseGuards, Query, Post, Body, Delete } from '@nestjs/common';
-import { JwtAuthGuard } from '../../infrustructure/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { ConversationService } from '../../application/services/conversation.service';
 import { CurrentUser, IAuthenticatedUser } from '@shared/shared';
 import { CreateConversationDto } from '../dto/conversation/createConversation.dto';

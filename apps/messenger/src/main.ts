@@ -5,7 +5,6 @@ import { LoggerService } from '@shared/shared/logger/logger.service';
 import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionFilter, LoggingInterceptor, messengerkafkaConsumerOptions } from '@shared/shared';
-import { EnvironmentConfigService } from '@shared/shared/config/environment-config.service';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { grpcMessengerOptions } from '@shared/shared/grpcOptions';
 
@@ -38,7 +37,5 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
   await app.startAllMicroservices();
   
-  const port = app.get(EnvironmentConfigService).getHttpPort() 
-  await app.listen(port);
 }
 bootstrap();

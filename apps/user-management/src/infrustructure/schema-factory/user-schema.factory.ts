@@ -16,9 +16,7 @@ export class UserSchemaFactory implements EntitySchemaFactory<UserSchema, User>{
             fullName: user.getFullName(),
             email: user.getEmail(),
             password: user.getPassword(),
-            phone_number: user.getPhoneNumber(),
             refreshToken: user.getRefreshToken(),
-            status: user.getStatus()
         }
     }
     createFromSchema(user: UserSchema): User {
@@ -27,9 +25,7 @@ export class UserSchemaFactory implements EntitySchemaFactory<UserSchema, User>{
             user.fullName,
             user.email,
             user.password,
-            user.phone_number,
             user.refreshToken,
-            user.status
         )
     }
     

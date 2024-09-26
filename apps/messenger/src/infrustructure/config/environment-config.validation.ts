@@ -12,9 +12,6 @@ class EnvironmentVariables {
   @IsEnum(Environment)
   NODE_ENV: Environment;
 
-  @IsNumber()
-  HTTP_PORT: number;
-
   @IsString()
   MONGO_URI: string;
 

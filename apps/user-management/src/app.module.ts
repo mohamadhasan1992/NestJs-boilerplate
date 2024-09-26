@@ -9,7 +9,6 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { UserEntityRepository } from './infrustructure/repositories/user-entity.repository';
 import { UserSchemaFactory } from './infrustructure/schema-factory/user-schema.factory';
 import { UserEntityFactory } from './domain/entityFactories/UserEntity.factory';
-import { AuthStrategies } from './presentation/strategies';
 import { CommandHandlers } from './application/command';
 import { QueryHandlers } from './application/query';
 import { EventHandlers } from './application/event';
@@ -68,9 +67,8 @@ import { BcryptService } from '@shared/shared/bcrypt/bcrypt.service';
     {provide: "JwtService", useClass: JwtTokenService},
     {provide: "ConfigService", useClass: EnvironmentConfigService},
     {provide: "BcryptService", useClass: BcryptService},
-    UserSchemaFactory,
+    {provide: "UserSchemaFactory", useClass: UserSchemaFactory},
     UserEntityFactory,
-    ...AuthStrategies,
     ...CommandHandlers,
     ...QueryHandlers,
     ...EventHandlers

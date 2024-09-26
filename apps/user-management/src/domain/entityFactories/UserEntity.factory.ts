@@ -16,13 +16,12 @@ export class UserEntityFactory implements EntityFactory<User>{
         private readonly bcryptService: IBcryptService,
     ){}
 
-    async create(fullName: string, email: string, password: string, phone_number: string): Promise<User> {
+    async create(fullName: string, email: string, password: string): Promise<User> {
         const user = new User(
             new Types.ObjectId().toHexString(), 
             fullName, 
             email,
             password,
-            phone_number,
             "",
             UserStatusEnum.WaitingForActivation
         )

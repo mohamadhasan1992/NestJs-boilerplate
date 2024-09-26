@@ -1,6 +1,8 @@
+import { ConversationSchema } from "../../infrustructure/schema/conversation.schema";
+import { Conversation } from "../entities/conversation";
 
 
 export interface IConversationSchemaFactory{
-    // create(user: User): UserSchema,
-    // createFromSchema(user: UserSchema): User
+    create(conversation: Conversation): ConversationSchema,
+    createFromSchema(user: ConversationSchema): Conversation
 }

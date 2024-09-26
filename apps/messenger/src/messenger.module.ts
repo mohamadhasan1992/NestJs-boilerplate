@@ -14,6 +14,15 @@ import { SchemaFactory } from '@nestjs/mongoose';
 import { ConversationSchema } from './infrustructure/schema/conversation.schema';
 import { MessageSchema } from './infrustructure/schema/message.schema';
 import { AllControllers } from './presentation';
+import { ConversationEntityRepository } from './infrustructure/repositories/conversation-entity.repository';
+import { MessageEntityRepository } from './infrustructure/repositories/message-entity.repository';
+import { ConversationSchemaFactory } from './infrustructure/schema-factory/conversation-schema.factory';
+import { MessageSchemaFactory } from './infrustructure/schema-factory/message-schema.factory';
+import { MessageEntityFactory } from './domain/entityFactories/MessageEntity.factory';
+import { ConversationEntityFactory } from './domain/entityFactories/ConversationEntity.factory';
+import { CommandHandlers } from './application/command';
+import { QueryHandlers } from './application/query';
+import { EventHandlers } from './application/event';
 
 
 
@@ -56,6 +65,15 @@ import { AllControllers } from './presentation';
     {provide: "JwtService", useClass: JwtTokenService},
     {provide: "ConfigService", useClass: EnvironmentConfigService},
     {provide: "BcryptService", useClass: BcryptService},
+    {provide: "ConversationRepository", useClass: ConversationEntityRepository},
+    {provide: "MessageRepository", useClass: MessageEntityRepository},
+    {provide: "ConversationSchemaFactory", useClass: ConversationSchemaFactory},
+    {provide: "MessageSchemaFactory", useClass: MessageSchemaFactory},
+    MessageEntityFactory,
+    ConversationEntityFactory,
+    ...CommandHandlers,
+    ...QueryHandlers,
+    ...EventHandlers
   ],
 })
 export class MessengerModule {}

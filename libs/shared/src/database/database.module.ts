@@ -1,7 +1,7 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
-import { EnvironmentConfigModule } from 'src/infrustructure/config/environment-config.module';
-import { EnvironmentConfigService } from 'src/infrustructure/config/environment-config.service';
+import { EnvironmentConfigModule } from '../config/environment-config.module';
+import { EnvironmentConfigService } from '../config/environment-config.service';
 
 
 @Global()

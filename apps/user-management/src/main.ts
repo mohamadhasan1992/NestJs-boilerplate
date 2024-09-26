@@ -5,7 +5,6 @@ import * as cookieParser from 'cookie-parser';
 import { LoggerService } from '../../../libs/shared/src/logger/logger.service';
 import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n';
 import { AllExceptionFilter, LoggingInterceptor, userKafkaConsumerOptions } from '@shared/shared';
-import { EnvironmentConfigService } from '@shared/shared/config/environment-config.service';
 import { MicroserviceOptions} from '@nestjs/microservices';
 import { grpcUserOptions } from '@shared/shared/grpcOptions';
 
@@ -42,9 +41,6 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
 
 
-  
-  const port = app.get(EnvironmentConfigService).getHttpPort() 
-  await app.listen(port);
 }
 
 

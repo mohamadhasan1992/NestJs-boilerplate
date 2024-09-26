@@ -1,5 +1,4 @@
 import { AggregateRoot } from "@nestjs/cqrs";
-import { UserStatusEnum } from "../object-values/user-status.enum";
 import { UserSignedUpEvent } from "../events/impl/auth/user-signed-up-event";
 
 
@@ -9,9 +8,7 @@ export class User extends AggregateRoot{
       private fullName: string,
       private email: string,
       private password: string,
-      private phone_number: string,
       private refreshToken: string,
-      private status: UserStatusEnum
     ) {
       super()
     }
@@ -28,9 +25,6 @@ export class User extends AggregateRoot{
       return this.email;
     }
 
-    getPhoneNumber(): string{
-        return this.phone_number;
-    }
     
     getRefreshToken(): string{
       return this.refreshToken;
@@ -40,9 +34,6 @@ export class User extends AggregateRoot{
       return this.password;
     }
 
-    getStatus(): UserStatusEnum{
-      return this.status;
-    }
 
     setRefreshToken(token: string): void{
       this.refreshToken = token;
@@ -52,15 +43,8 @@ export class User extends AggregateRoot{
       this.password = password;
     }
 
-    activateUser(): void{
-      this.status = UserStatusEnum.Active;
-    }
 
-    isNotActive(): boolean{
-      return this.status != UserStatusEnum.Active
-    }
-
-    sendSignUpEmail(){
-      this.apply(new UserSignedUpEvent(this._id, this.phone_number));
+    userSignedUp(){
+      this.apply(new UserSignedUpEvent(this));
     }
 }

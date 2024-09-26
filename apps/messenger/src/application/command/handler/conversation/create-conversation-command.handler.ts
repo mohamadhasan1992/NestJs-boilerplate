@@ -4,7 +4,6 @@ import { CreateConversationCommand } from '../../impl/conversation/create-conver
 import { IConversationRepository } from 'apps/messenger/src/domain/adapters/repository.interface';
 import { ConversationEntityFactory } from 'apps/messenger/src/domain/entityFactories/ConversationEntity.factory';
 import { MessageEntityFactory } from 'apps/messenger/src/domain/entityFactories/MessageEntity.factory';
-import mongoose from 'mongoose';
 
 
 
@@ -33,7 +32,7 @@ export class CreateConversationCommandHandler implements ICommandHandler<CreateC
     // attach message as last message to conersation
     newConversation.addLastMessageToConversation(newMessage.getId())
     await this.conversationRepository.findByIdAndReplace(
-      newConversation.getId() as unknown as mongoose.Types.ObjectId, 
+      newConversation.getId(), 
       newConversation
     )
     newConversation.newConversationCreated()

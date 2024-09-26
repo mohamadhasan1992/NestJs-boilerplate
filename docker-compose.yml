@@ -25,7 +25,6 @@ services:
     container_name: user-management
     restart: always
     ports:
-      - '3000:3000'
       - '50051:50051'
     command: npm run start:dev user-management
     depends_on:
@@ -43,7 +42,6 @@ services:
     container_name: messenger
     restart: always
     ports:
-      - '4000:4000'
       - '50052:50051'
     command: npm run start:dev messenger
     depends_on:

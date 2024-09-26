@@ -11,6 +11,7 @@ import { Observable } from "rxjs";
 export const protobufPackage = "pb";
 
 export interface User {
+  ID: string;
   fullName: string;
   email: string;
   status: string;
@@ -20,23 +21,41 @@ export interface GetUserRequest {
   userId: string;
 }
 
+export interface GetUserByEmailRequest {
+  email: string;
+}
+
 export interface GetUserResponse {
   user: User | undefined;
+}
+
+export interface GetUserByEmailResponse {
+  ID: string;
+  fullName: string;
+  email: string;
+  status: string;
+  password: string;
 }
 
 export const PB_PACKAGE_NAME = "pb";
 
 export interface AuthServiceClient {
   getMe(request: GetUserRequest): Observable<GetUserResponse>;
+
+  getUserByEmail(request: GetUserByEmailRequest): Observable<GetUserByEmailResponse>;
 }
 
 export interface AuthServiceController {
   getMe(request: GetUserRequest): Promise<GetUserResponse> | Observable<GetUserResponse> | GetUserResponse;
+
+  getUserByEmail(
+    request: GetUserByEmailRequest,
+  ): Promise<GetUserByEmailResponse> | Observable<GetUserByEmailResponse> | GetUserByEmailResponse;
 }
 
 export function AuthServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getMe"];
+    const grpcMethods: string[] = ["getMe", "getUserByEmail"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AuthService", method)(constructor.prototype[method], method, descriptor);

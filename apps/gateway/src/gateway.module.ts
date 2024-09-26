@@ -11,6 +11,7 @@ import { grpcMessengerOptions, grpcUserOptions } from '@shared/shared/grpcOption
 import { KafkaModule } from '@shared/shared/messaging/kfaka-streaming.module';
 import { ApiGatewayMessengerKafkaService } from './application/messaging/gateway-messenger-kafka.service';
 import { ApiGatewayAuthKafkaService } from './application/messaging/gateway-auth-kafka.service';
+import { AuthStrategies } from './presentation/strategies';
 
 
 
@@ -36,7 +37,8 @@ import { ApiGatewayAuthKafkaService } from './application/messaging/gateway-auth
     ConversationService, 
     MessageService,
     ApiGatewayAuthKafkaService,
-    ApiGatewayMessengerKafkaService
+    ApiGatewayMessengerKafkaService,
+    ...AuthStrategies,
   ],
 })
 export class GatewayModule {}

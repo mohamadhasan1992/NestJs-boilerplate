@@ -4,20 +4,35 @@ package pb;
 
 
 message User {
-    string fullName = 1;
-    string email = 2;
-    string status = 3;
+    string ID = 1;
+    string fullName = 2;
+    string email = 3;
+    string status = 4;
 }
 
 message GetUserRequest {
     string userId = 1;
 }
 
+message GetUserByEmailRequest {
+    string email = 1;
+}
+
 message GetUserResponse{
     User user = 1;
+}
+
+message GetUserByEmailResponse{
+    string ID = 1;
+    string fullName = 2;
+    string email = 3;
+    string status = 4;
+    string password = 5;
 }
 
 
 service AuthService {
     rpc GetMe(GetUserRequest) returns (GetUserResponse) {}
+
+    rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse) {}
 }

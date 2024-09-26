@@ -2,7 +2,7 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { SignUpUserDto } from '../../presentation/dto/auth/signup-user.dto';
 import { LoginUserDto } from '../../presentation/dto/auth/login-user.dto';
-import { AUTH_SERVICE_NAME, AuthServiceClient, GetUserRequest } from '@shared/shared/proto/user';
+import { AUTH_SERVICE_NAME, AuthServiceClient, GetUserByEmailRequest, GetUserRequest } from '@shared/shared/proto/user';
 import { ApiGatewayAuthKafkaService } from '../messaging/gateway-auth-kafka.service';
 import { AuthActionsEnum } from '@shared/shared/enum/incex';
 
@@ -53,6 +53,13 @@ export class AuthService implements OnModuleInit {
         userId
       };
       return this.authService.getMe(requestMe)
+    }
+
+    async getUserByEmail(email: string){
+      const requestUserByEmail: GetUserByEmailRequest = {
+        email
+      };
+      return this.authService.getUserByEmail(requestUserByEmail)
     }
 
 

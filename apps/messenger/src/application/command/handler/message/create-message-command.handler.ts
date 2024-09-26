@@ -2,7 +2,6 @@ import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { Inject, NotFoundException } from '@nestjs/common';
 import { IConversationRepository } from 'apps/messenger/src/domain/adapters/repository.interface';
 import { MessageEntityFactory } from 'apps/messenger/src/domain/entityFactories/MessageEntity.factory';
-import mongoose from 'mongoose';
 import { CreateMessageCommand } from '../../impl/message/create-message.command';
 
 
@@ -34,7 +33,7 @@ export class CreateMessageCommandHandler implements ICommandHandler<CreateMessag
     // attach message as last message to conersation
     messageConversation.addLastMessageToConversation(newMessage.getId())
     await this.conversationRepository.findByIdAndReplace(
-      messageConversation.getId() as unknown as mongoose.Types.ObjectId, 
+      messageConversation.getId(), 
       messageConversation
     )
     newMessage.newMessageCreated()

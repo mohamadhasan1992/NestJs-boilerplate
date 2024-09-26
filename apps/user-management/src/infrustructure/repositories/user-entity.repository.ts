@@ -22,10 +22,6 @@ export class UserEntityRepository extends BaseEntityRepository<UserSchema, User>
         return await this.findOne({email})
     }
 
-    async findByPhoneNumber(phone_number: string): Promise<User>{
-        return await this.findOne({phone_number})
-    }
-
     async updateRefreshToken(_id: string, token: string){
         const user = await this.findOneById(_id);
         user.setRefreshToken(token)

@@ -13,9 +13,6 @@ class EnvironmentVariables {
   NODE_ENV: Environment;
 
 
-  @IsNumber()
-  HTTP_PORT: number;
-
 
   @IsString()
   JWT_SECRET: string;
