@@ -1,13 +1,12 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { SignUpUserDto } from '../../application/dto/auth/signup-user.dto';
-import { SignUpCommand } from '../../application/command/impl/auth/signup.command';
-import { LoginUserDto } from '../../application/dto/auth/login-user.dto';
-import { LoginCommand } from '../../application/command/impl/auth/login.command';
 import { AuthServiceController, AuthServiceControllerMethods, GetUserByEmailRequest, GetUserRequest } from '@shared/shared/proto/user';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Payload } from '@nestjs/microservices';
 import { GetMeQuery } from '../../application/query/impl/auth/get-me-query';
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { GetUserByEmailQuery } from '../../application/query/impl/auth/get-user-by-email.query';
+import { LoginUserDto, SignUpUserDto } from '@shared/shared';
+import { SignUpCommand } from '../../application/command/impl/auth/signup.command';
+import { LoginCommand } from '../../application/command/impl/auth/login.command';
 
 
 
@@ -25,16 +24,19 @@ export class AuthController implements AuthServiceController {
 
 
 
-    @MessagePattern('signup-user')
-    async signup(@Payload() signUpUserDto: SignUpUserDto) {
-        return await this.commandBus.execute(new SignUpCommand(signUpUserDto))
+    // http request if exposed
+    @Post('signup')
+    async signup(
+        @Body() signUpUserDto: SignUpUserDto
+    ) {
+        return await this.commandBus.execute(new SignUpCommand(signUpUserDto))        
     }
 
-    @MessagePattern('login-user')
+    @Post('login')
     async login(
-        @Payload() loginUserDto: LoginUserDto,
+        @Body() loginUserDto: LoginUserDto,
     ) {
-        const {accessToken} = await this.commandBus.execute(new LoginCommand(loginUserDto))
+        const accessToken = await this.commandBus.execute(new LoginCommand(loginUserDto))
         return {
             accessToken
         }

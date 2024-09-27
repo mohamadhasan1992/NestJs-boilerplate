@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { BaseEntityRepository } from "@shared/shared";
 import { ConversationSchema } from "../schema/conversation.schema";
 import { Conversation } from "../../domain/entities/conversation";
-import { ConversationSchemaFactory } from "../schema-factory/conversation-schema.factory";
+import { IConversationSchemaFactory } from "../../domain/adapters/conversation-schemaFactory.iterface";
 
 
 
@@ -13,7 +13,8 @@ export class ConversationEntityRepository extends BaseEntityRepository<Conversat
     constructor(
         @InjectModel("Conversation")
         conversationModel: Model<ConversationSchema>,
-        conversationSchemaFactory: ConversationSchemaFactory
+        @Inject("ConversationSchemaFactory")
+        conversationSchemaFactory: IConversationSchemaFactory
     ){
         super(conversationModel, conversationSchemaFactory);
     }

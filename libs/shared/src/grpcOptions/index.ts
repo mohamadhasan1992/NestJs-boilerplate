@@ -6,7 +6,7 @@ export const grpcUserOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
     package: PB_PACKAGE_NAME,
-    protoPath: join(__dirname, '../proto/user.proto'),
+    protoPath: join(__dirname, '../../proto/user.proto'),
     url: 'user-management:50051',
   },
 };
@@ -15,7 +15,7 @@ export const grpcMessengerOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
     package: PB_PACKAGE_NAME,
-    protoPath: join(__dirname, '../proto/messenger.proto'),
+    protoPath: join(__dirname, '../../proto/messenger.proto'),
     url: 'messenger:50052',
   },
 };

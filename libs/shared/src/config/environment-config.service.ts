@@ -33,10 +33,12 @@ export class EnvironmentConfigService implements DatabaseConfig, JWTConfig {
 
 
   getRedisHost(): string {
+    console.log("getRedisHost")
     return this.configService.get<string>('REDIS_HOST');
   }
 
   getRedisPort(): number {
+    console.log("getRedisPort")
     return this.configService.get<number>('REDISE_PORT');
   }
 

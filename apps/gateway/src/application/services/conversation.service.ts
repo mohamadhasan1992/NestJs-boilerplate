@@ -1,10 +1,10 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { CreateConversationDto } from '../../presentation/dto/conversation/createConversation.dto';
+import { CreateConversationDto } from '../../../../../libs/shared/src/dto/conversation/createConversation.dto';
 import { CONVERSATION_SERVICE_NAME, ConversationServiceClient, FindConversationMessageRequest, FindConversationRequest } from '@shared/shared/proto/messenger';
 import { FilterQuery } from 'mongoose';
 import { ApiGatewayMessengerKafkaService } from '../messaging/gateway-messenger-kafka.service';
-import { ConversationActionEnum } from '@shared/shared/enum/incex';
+import { ConversationActionEnum } from '@shared/shared/enum';
 
 
 

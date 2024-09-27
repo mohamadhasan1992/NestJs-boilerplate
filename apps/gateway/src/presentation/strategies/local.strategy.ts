@@ -3,7 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { BadRequestException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { IAuthenticatedUser, IBcryptService, ILogger } from '@shared/shared';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { AuthService } from '../../application/services/auth.service';
 import { catchError, lastValueFrom, map } from 'rxjs';
 import { GetUserByEmailResponse } from '@shared/shared/proto/user';
@@ -15,7 +14,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject("LoggerService")
     private readonly logger: ILogger,
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly authService: AuthService,
     @Inject("BcryptService")
     private readonly bcryptService: IBcryptService,
@@ -25,6 +23,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(email: string, password: string) {
+    console.log("validate", email)
     if (!email || !password) {
       this.logger.warn('LocalStrategy', `email or password is missing, BadRequestException`);
       throw new BadRequestException(this.i18nService.t("USER_NOT_FOUND"))
@@ -34,7 +33,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       const user: IAuthenticatedUser = await lastValueFrom(
           (await this.authService.getUserByEmail(email)).pipe(
               map(async(user: GetUserByEmailResponse) => {
-                  console.log("user local strategy", user)
                   if (!user) {
                     return null;
                   }

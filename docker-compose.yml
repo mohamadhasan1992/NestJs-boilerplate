@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: ./apps/gateway/Dockerfile
     container_name: gateway
+    env_file:
+      - ./apps/gateway/env/local.env
     restart: always
     ports:
       - '2000:2000'
@@ -13,7 +15,7 @@ services:
       - redis
       - kafka
       - user-management
-      - messenger
+      # - messenger
     networks:
       - app-net
 
@@ -22,26 +24,34 @@ services:
       context: .
       dockerfile: ./apps/user-management/Dockerfile
     container_name: user-management
+    env_file:
+      - ./apps/user-management/env/local.env
     restart: always
     ports:
       - '50051:50051'
     depends_on:
       - mongo
+      - redis
+      - kafka
     networks:
       - app-net
 
-  messenger:
-    build:
-      context: .
-      dockerfile: ./apps/messenger/Dockerfile
-    container_name: messenger
-    restart: always
-    ports:
-      - '50052:50051'
-    depends_on:
-      - mongo
-    networks:
-      - app-net
+  # messenger:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/messenger/Dockerfile
+  #   container_name: messenger
+  #   env_file:
+  #     - ./apps/messenger/env/local.env
+  #   restart: always
+  #   ports:
+  #     - '50052:50051'
+  #   depends_on:
+  #     - mongo
+  #     - redis
+  #     - kafka
+  #   networks:
+  #     - app-net
 
   mongo:
     image: mongo:5.0

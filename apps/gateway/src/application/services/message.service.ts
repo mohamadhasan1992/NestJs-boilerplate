@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMessageDto } from '../../presentation/dto/message/createMessage.dto';
+import { CreateMessageDto } from '../../../../../libs/shared/src/dto/message/createMessage.dto';
 import { ApiGatewayMessengerKafkaService } from '../messaging/gateway-messenger-kafka.service';
-import { ConversationActionEnum } from '@shared/shared/enum/incex';
+import { ConversationActionEnum } from '@shared/shared/enum';
 
 
 

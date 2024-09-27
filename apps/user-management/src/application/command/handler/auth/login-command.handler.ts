@@ -2,7 +2,7 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { LoginCommand } from '../../impl/auth/login.command';
 import { IUserRepository } from 'apps/user-management/src/domain/adapters/repository.interface';
-import { IBcryptService, IJwtService, IJwtServicePayload } from '@shared/shared';
+import { IJwtService, IJwtServicePayload } from '@shared/shared';
 import { JWTConfig } from 'apps/user-management/src/domain/adapters/jwt.interface';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 
@@ -16,10 +16,8 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     private readonly userRepository: IUserRepository,
     @Inject("JwtService")
     private readonly jwtTokenService: IJwtService,
-    @Inject("JwtConfig")
-    private readonly jwtConfig: JWTConfig,
-    @Inject("BcryptService")
-    private readonly bcryptService: IBcryptService,
+    @Inject("EnvironmentConfigService")
+    private readonly environmentConfigService: JWTConfig,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
@@ -30,12 +28,19 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     // find user
     const user = await this.userRepository.findByEmail(email);
     const payload: IJwtServicePayload = { userId: user.getId() };
-    const jwtSecret = this.jwtConfig.getJwtSecret();
-    const jwtExpiresIn = this.jwtConfig.getJwtExpirationTime() + 's';
+    const jwtSecret = this.environmentConfigService.getJwtSecret();
+    const jwtExpiresIn = this.environmentConfigService.getJwtExpirationTime() + 's';
     const token = this.jwtTokenService.createToken(payload, jwtSecret, jwtExpiresIn);
     
     // cache user
-    await this.cacheManager.set(user.getId(), user, parseInt(this.jwtConfig.getJwtExpirationTime()))
+    await this.cacheManager.set(
+      user.getId(),
+      {
+        _id: user.getId(),
+        email: user.getEmail(),
+        fullName: user.getFullName()
+      }, 
+      parseInt(this.environmentConfigService.getJwtExpirationTime()))
     return { accessToken: token };
   }
 

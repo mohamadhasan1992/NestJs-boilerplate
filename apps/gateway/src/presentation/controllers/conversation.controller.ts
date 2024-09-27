@@ -2,8 +2,8 @@ import { Controller, Get, Param, UseGuards, Query, Post, Body, Delete } from '@n
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { ConversationService } from '../../application/services/conversation.service';
 import { CurrentUser, IAuthenticatedUser } from '@shared/shared';
-import { CreateConversationDto } from '../dto/conversation/createConversation.dto';
 import { FilterQuery } from 'mongoose';
+import { CreateConversationDto } from '@shared/shared/dto/conversation';
 
 
 

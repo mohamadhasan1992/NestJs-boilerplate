@@ -3,8 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { I18nService } from 'nestjs-i18n';
-import { LoggerService } from '@shared/shared/logger/logger.service';
-import { IAuthenticatedUser, TokenPayload } from '@shared/shared';
+import { IAuthenticatedUser, ILogger, TokenPayload } from '@shared/shared';
 import { AuthService } from '../../application/services/auth.service';
 import { GetUserResponse } from '@shared/shared/proto/user';
 import { catchError, lastValueFrom, map } from 'rxjs';
@@ -15,7 +14,8 @@ import { CACHE_MANAGER, Cache} from '@nestjs/cache-manager';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private readonly logger: LoggerService,
+    @Inject("LoggerService")
+    private readonly logger: ILogger,
     private readonly authService: AuthService,
     private readonly i18nService: I18nService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
@@ -23,7 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
-          return request?.cookies?.Authentication;
+          return this.extractTokenFromHeader(request) || request?.cookies?.Authentication;
         },
       ]),
       secretOrKey: process.env.JWT_SECRET,
@@ -32,10 +32,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: TokenPayload) {
      // check for cached
-     const cachedUser: string = await this.cacheManager.get(payload.userId);
-     if(cachedUser){
-         return cachedUser
-     }
+    //  const cachedUser: string = await this.cacheManager.get(payload.userId);
+    //  if(cachedUser){
+    //      return cachedUser
+    //  }
     const user: IAuthenticatedUser = await lastValueFrom(
       (await this.authService.getUser(payload.userId)).pipe(
           map(({user}: GetUserResponse) => {
@@ -62,4 +62,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       email: user.email,
     };
   }
+
+  private extractTokenFromHeader(request: Request): string | undefined {
+    const [type, token] = request?.headers?.authorization?.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
+}
 }

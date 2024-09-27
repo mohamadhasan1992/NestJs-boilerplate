@@ -1,10 +1,11 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { SignUpUserDto } from '../../presentation/dto/auth/signup-user.dto';
-import { LoginUserDto } from '../../presentation/dto/auth/login-user.dto';
-import { AUTH_SERVICE_NAME, AuthServiceClient, GetUserByEmailRequest, GetUserRequest } from '@shared/shared/proto/user';
+import { SignUpUserDto } from '../../../../../libs/shared/src/dto/auth/signup-user.dto';
+import { LoginUserDto } from '../../../../../libs/shared/src/dto/auth/login-user.dto';
+import { AUTH_SERVICE_NAME, AuthServiceClient, GetUserByEmailRequest, GetUserByEmailResponse, GetUserRequest } from '@shared/shared/proto/user';
 import { ApiGatewayAuthKafkaService } from '../messaging/gateway-auth-kafka.service';
-import { AuthActionsEnum } from '@shared/shared/enum/incex';
+import { Observable } from 'rxjs';
+import { AuthActionsEnum } from '@shared/shared/enum';
 
 
 
@@ -24,6 +25,7 @@ export class AuthService implements OnModuleInit {
 
 
     async sinupUser(signUpUserDto: SignUpUserDto){
+      console.log("sending signup to kafka")
       const {success, data, message} = await this.kafkaService.sendRequestToAuthService(
         {
           ...signUpUserDto,
@@ -42,7 +44,9 @@ export class AuthService implements OnModuleInit {
           action: AuthActionsEnum.Login
         }
       );
-
+      console.log("success", success)
+      console.log("data", data)
+      console.log("message", message)
       return {
         success, data, message      
       }
@@ -55,11 +59,11 @@ export class AuthService implements OnModuleInit {
       return this.authService.getMe(requestMe)
     }
 
-    async getUserByEmail(email: string){
+    async getUserByEmail(email: string): Promise<Observable<GetUserByEmailResponse>>{
       const requestUserByEmail: GetUserByEmailRequest = {
         email
       };
-      return this.authService.getUserByEmail(requestUserByEmail)
+      return await this.authService.getUserByEmail(requestUserByEmail)
     }
 
 

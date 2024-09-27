@@ -1,4 +1,4 @@
-import { LoginUserDto } from "../../../dto/auth/login-user.dto";
+import { LoginUserDto } from "@shared/shared";
 
 
 

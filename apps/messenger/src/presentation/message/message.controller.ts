@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateMessageDto } from '../../application/dto/message/createMessage.dto';
 import { CreateMessageCommand } from '../../application/command/impl/message/create-message.command';
 import { DeleteMessageCommand } from '../../application/command/impl/message/delete-message.command';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { CreateMessageDto } from '@shared/shared/dto/message';
 
 
 

@@ -1,6 +1,5 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { BadRequestException, Inject } from '@nestjs/common';
-import { I18nService } from 'nestjs-i18n';
 import { SignUpCommand } from '../../impl/auth/signup.command';
 import { IUserRepository } from 'apps/user-management/src/domain/adapters/repository.interface';
 import { UserEntityFactory } from 'apps/user-management/src/domain/entityFactories/UserEntity.factory';
@@ -15,7 +14,6 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
     private readonly userRepository: IUserRepository,
     private readonly userEntityFactory: UserEntityFactory,
     private readonly eventPublisher: EventPublisher,
-    private readonly i18nService: I18nService
   ) {}
 
   async execute({signUpUserDto}: SignUpCommand): Promise<any> {
@@ -27,9 +25,7 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
     const ifUserExists = await this.userRepository.findByEmail(email);
     if(ifUserExists){
       throw new BadRequestException(
-        this.i18nService.t(
-          "error.USER_ALREADY_EXISTS"
-        )
+        "error.USER_ALREADY_EXISTS"
       )
     }
 
@@ -42,9 +38,7 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
     
     return {
       message: 
-      this.i18nService.t(
-        "success.SIGNUPED_SUCCESSFULLY"
-      ),
+      "success.SIGNUPED_SUCCESSFULLY"
     }
   }
 }

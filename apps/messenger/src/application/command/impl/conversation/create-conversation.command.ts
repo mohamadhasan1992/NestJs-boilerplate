@@ -1,4 +1,4 @@
-import { CreateConversationDto } from "../../../dto/conversation/createConversation.dto";
+import { CreateConversationDto } from "@shared/shared/dto/conversation";
 
 
 
