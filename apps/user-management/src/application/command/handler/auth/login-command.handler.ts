@@ -3,8 +3,8 @@ import { Inject } from '@nestjs/common';
 import { LoginCommand } from '../../impl/auth/login.command';
 import { IUserRepository } from 'apps/user-management/src/domain/adapters/repository.interface';
 import { IJwtService, IJwtServicePayload } from '@shared/shared';
-import { JWTConfig } from 'apps/user-management/src/domain/adapters/jwt.interface';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
+import { JWTConfig } from '@shared/shared/adapters/jwt.interface';
 
 
 

@@ -21,10 +21,9 @@ export class UserManagementKafkaService  {
       
               // Process the request
               const correlationId = request.correlationId;
-              const userData = await this.handleAuthRequest(request);
+              const gatewayData = await this.handleAuthRequest(request);
       
-              // Send response back to the api-gateway
-              await this.sendResponseToApiGateway(userData, correlationId);
+              await this.sendResponseToApiGateway(gatewayData, correlationId);
             }
         );
     }
@@ -50,7 +49,6 @@ export class UserManagementKafkaService  {
         default:
             break;
     }
-    console.log("kafka response", response)
     return response
   }
 

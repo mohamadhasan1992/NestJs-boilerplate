@@ -25,6 +25,7 @@ export class MessengerKafkaService {
         
         // Process the request
         const correlationId = request.correlationId;
+        console.log("recieved message", correlationId)
         const userData = await this.handleAuthRequest(request);
 
         // Send response back to the api-gateway

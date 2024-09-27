@@ -25,38 +25,32 @@ export class AuthService implements OnModuleInit {
 
 
     async sinupUser(signUpUserDto: SignUpUserDto){
-      console.log("sending signup to kafka")
-      const {success, data, message} = await this.kafkaService.sendRequestToAuthService(
+      const {message} = await this.kafkaService.sendRequestToAuthService(
         {
           ...signUpUserDto,
           action: AuthActionsEnum.Signup
         }
       );
       return {
-        success, data, message
+        message
       }
     } 
 
     async loginUser(loginUserDto: LoginUserDto){
-      const {success, data, message} = await this.kafkaService.sendRequestToAuthService(
+      const response = await this.kafkaService.sendRequestToAuthService(
         {
           ...loginUserDto,
           action: AuthActionsEnum.Login
         }
       );
-      console.log("success", success)
-      console.log("data", data)
-      console.log("message", message)
-      return {
-        success, data, message      
-      }
+      return {accessToken: response.accessToken}
     }
 
     async getUser(userId: string){
       const requestMe: GetUserRequest = {
         userId
       };
-      return this.authService.getMe(requestMe)
+      return await this.authService.getMe(requestMe)
     }
 
     async getUserByEmail(email: string): Promise<Observable<GetUserByEmailResponse>>{

@@ -15,7 +15,7 @@ services:
       - redis
       - kafka
       - user-management
-      # - messenger
+      - messenger
     networks:
       - app-net
 
@@ -36,22 +36,22 @@ services:
     networks:
       - app-net
 
-  # messenger:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/messenger/Dockerfile
-  #   container_name: messenger
-  #   env_file:
-  #     - ./apps/messenger/env/local.env
-  #   restart: always
-  #   ports:
-  #     - '50052:50051'
-  #   depends_on:
-  #     - mongo
-  #     - redis
-  #     - kafka
-  #   networks:
-  #     - app-net
+  messenger:
+    build:
+      context: .
+      dockerfile: ./apps/messenger/Dockerfile
+    container_name: messenger
+    env_file:
+      - ./apps/messenger/env/local.env
+    restart: always
+    ports:
+      - '50052:50051'
+    depends_on:
+      - mongo
+      - redis
+      - kafka
+    networks:
+      - app-net
 
   mongo:
     image: mongo:5.0

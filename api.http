@@ -1,0 +1,52 @@
+### signup
+POST http://localhost:2000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "email": "pqyvgsk@yahoo.com",
+  "password": "EURTses1234@",
+  "fullName": "pqsyvgk"
+}
+
+### login
+POST http://localhost:2000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "pqyvgk@yahoo.com",
+  "password": "EURTes1234@"
+}
+
+
+### Get Me (GET)
+GET http://localhost:2000/api/v1/auth/me
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY3MWJkYzQwMzgyZjk4ZWM4MGFiMzgiLCJpYXQiOjE3Mjc0NzM1NzcsImV4cCI6MTcyNzQ3NTM3N30.hpzWp69XPZNFmx7nWVEFAc--OgE7zOd1rWZtsXpJqJc
+
+
+### create conversation
+POST http://localhost:2000/api/v1/conversation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY3MWJkYzQwMzgyZjk4ZWM4MGFiMzgiLCJpYXQiOjE3Mjc0NzM1NzcsImV4cCI6MTcyNzQ3NTM3N30.hpzWp69XPZNFmx7nWVEFAc--OgE7zOd1rWZtsXpJqJc
+Content-Type: application/json
+
+{
+  "recipient": "pqyvgsk@yahoo.com",
+  "content": "EURTses1234@"
+}
+
+### login
+DELETE  http://localhost:2000/api/v1/conversation/id
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY3MWJkYzQwMzgyZjk4ZWM4MGFiMzgiLCJpYXQiOjE3Mjc0NzM1NzcsImV4cCI6MTcyNzQ3NTM3N30.hpzWp69XPZNFmx7nWVEFAc--OgE7zOd1rWZtsXpJqJc
+Content-Type: application/json
+
+
+### Get Conversation (GET)
+POST http://localhost:2000/api/v1/conversation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY3MWJkYzQwMzgyZjk4ZWM4MGFiMzgiLCJpYXQiOjE3Mjc0NzM1NzcsImV4cCI6MTcyNzQ3NTM3N30.hpzWp69XPZNFmx7nWVEFAc--OgE7zOd1rWZtsXpJqJc
+Accept: application/json
+
+
+### Get Conversation message list(GET)
+POST http://localhost:2000/api/v1/conversation/id/message
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY3MWJkYzQwMzgyZjk4ZWM4MGFiMzgiLCJpYXQiOjE3Mjc0NzM1NzcsImV4cCI6MTcyNzQ3NTM3N30.hpzWp69XPZNFmx7nWVEFAc--OgE7zOd1rWZtsXpJqJc
+Accept: application/json

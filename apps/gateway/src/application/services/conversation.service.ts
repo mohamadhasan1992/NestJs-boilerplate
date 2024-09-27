@@ -23,32 +23,21 @@ export class ConversationService implements OnModuleInit {
 
   // call kafka
   async create(createConversationDto: CreateConversationDto, userId: string) {
-    const {success, data, message} = await this.kafkaService.sendRequestToMessengerService({
+    return await this.kafkaService.sendRequestToMessengerService({
       ...createConversationDto,
       userId,
       action: ConversationActionEnum.CreateConversation
     });
-
-    return {
-      success,
-      data,
-      message
-    }
   }
 
   
   async remove(conversationId: string, userId: string) {
-    const {success, data, message} = await this.kafkaService.sendRequestToMessengerService({
+    return await this.kafkaService.sendRequestToMessengerService({
       conversationId,
       userId,
       action: ConversationActionEnum.DeleteConversation
     });
 
-    return {
-      success,
-      data,
-      message
-    }
   }
 
   // call grpc

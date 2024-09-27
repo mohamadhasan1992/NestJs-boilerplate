@@ -28,7 +28,7 @@ export class ApiGatewayAuthKafkaService {
     const responsePromise = new Promise((resolve, reject) => {
       this.pendingResponses.set(correlationId, { resolve, reject });
     });
-
+    console.log("kafka service", [{ ...data, correlationId }])
     await this.kafkaService.sendMessage(KafkaTopics.KafkaAuthenticationRequestTopic, [{ ...data, correlationId }]);
     
     // Handle timeout

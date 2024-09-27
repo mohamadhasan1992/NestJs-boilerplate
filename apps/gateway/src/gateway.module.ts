@@ -62,7 +62,7 @@ import * as path from 'path';
   providers: [
     {provide: "LoggerService", useClass: LoggerService},
     {provide: "JwtService", useClass: JwtTokenService},
-    {provide: "ConfigService", useClass: EnvironmentConfigService},
+    {provide: "EnvironmentConfigService", useClass: EnvironmentConfigService},
     {provide: "BcryptService", useClass: BcryptService},
     AuthService, 
     ConversationService, 

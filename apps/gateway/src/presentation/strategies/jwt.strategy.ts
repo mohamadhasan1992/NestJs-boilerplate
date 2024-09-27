@@ -3,11 +3,12 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { I18nService } from 'nestjs-i18n';
-import { IAuthenticatedUser, ILogger, TokenPayload } from '@shared/shared';
+import { IAuthenticatedUser, IJwtServicePayload, ILogger } from '@shared/shared';
 import { AuthService } from '../../application/services/auth.service';
 import { GetUserResponse } from '@shared/shared/proto/user';
 import { catchError, lastValueFrom, map } from 'rxjs';
 import { CACHE_MANAGER, Cache} from '@nestjs/cache-manager';
+import { JWTConfig } from '@shared/shared/adapters/jwt.interface';
 
 
 
@@ -16,6 +17,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject("LoggerService")
     private readonly logger: ILogger,
+    @Inject("EnvironmentConfigService")
+    private readonly environmentConfigService: JWTConfig,
     private readonly authService: AuthService,
     private readonly i18nService: I18nService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
@@ -26,20 +29,22 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           return this.extractTokenFromHeader(request) || request?.cookies?.Authentication;
         },
       ]),
-      secretOrKey: process.env.JWT_SECRET,
+      secretOrKey: environmentConfigService.getJwtSecret(),
     });
   }
 
-  async validate(payload: TokenPayload) {
-     // check for cached
-    //  const cachedUser: string = await this.cacheManager.get(payload.userId);
-    //  if(cachedUser){
-    //      return cachedUser
-    //  }
+  async validate(payload: IJwtServicePayload) {
+    // check for cached
+     const cachedUser: string = await this.cacheManager.get(payload.userId);
+     if(cachedUser){
+         return cachedUser
+     }
     const user: IAuthenticatedUser = await lastValueFrom(
       (await this.authService.getUser(payload.userId)).pipe(
           map(({user}: GetUserResponse) => {
-              console.log("user jwt strategy", user)
+              if(!user){
+                return null
+              }
               return {
                 _id: user.ID,
                 email: user.email
@@ -65,6 +70,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request?.headers?.authorization?.split(' ') ?? [];
+    console.log(type, token)
     return type === 'Bearer' ? token : undefined;
 }
 }

@@ -1,5 +1,5 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { AuthServiceController, AuthServiceControllerMethods, GetUserByEmailRequest, GetUserRequest } from '@shared/shared/proto/user';
+import { AuthServiceController, AuthServiceControllerMethods, GetUserByEmailRequest, GetUserByEmailResponse, GetUserRequest, GetUserResponse } from '@shared/shared/proto/user';
 import { Payload } from '@nestjs/microservices';
 import { GetMeQuery } from '../../application/query/impl/auth/get-me-query';
 import { Body, Controller, Post } from '@nestjs/common';
@@ -46,13 +46,24 @@ export class AuthController implements AuthServiceController {
         @Payload() getUserRequest: GetUserRequest
     ) {
         const {userId} = getUserRequest;
-        return await this.queryBus.execute(new GetMeQuery(userId));
+        const user =  await this.queryBus.execute(new GetMeQuery(userId));
+        const response : GetUserResponse = {
+            user: user
+        }
+        return response
     }
 
     async getUserByEmail(
         @Payload() {email}: GetUserByEmailRequest
     ) {
-        return await this.queryBus.execute(new GetUserByEmailQuery(email));
+        const user = await this.queryBus.execute(new GetUserByEmailQuery(email));
+        const response : GetUserByEmailResponse = {
+            email: user.email,
+            fullName: user.fullName,
+            ID: user._id,
+            password: user.password
+        }
+        return response
     }
 
 }
