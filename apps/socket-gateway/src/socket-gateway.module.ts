@@ -35,14 +35,7 @@ import { JwtTokenService } from '@shared/shared/jwt/jwt.service';
       provide: "GATEWAY_SESSION_MANAGER",
       useClass: GatewaySessionManager,
     },
-  ],
-  exports: [
-    Gateway,
-    {
-      provide: "GATEWAY_SESSION_MANAGER",
-      useClass: GatewaySessionManager,
-    },
-  ],
+  ]
 })
 export class SocketGatewayModule {}
 

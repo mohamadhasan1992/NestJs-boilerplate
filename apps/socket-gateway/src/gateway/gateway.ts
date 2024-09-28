@@ -15,7 +15,7 @@ import { Socket } from 'socket.io';
 
 
 enum MessengerSocketEventsEnum{
-  connect = "connect",
+  connect = "newConnection",
   heartBeat = "heartBeat",
   onConversationJoin = "onConversationJoin",
   userJoin = "userJoin",

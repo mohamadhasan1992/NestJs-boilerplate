@@ -50,6 +50,7 @@ export class WebsocketAdapter extends IoAdapter {
         }
         // get userId from cookie
         const token = await this.authenticationService.decodeToken(clientCookie)
+        console.log("token", token)
         // 
         if(!token || !token.userId){
           return next(new Error('Authentication failed'));
