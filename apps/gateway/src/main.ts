@@ -14,10 +14,6 @@ async function bootstrap() {
   
   app.use(cookieParser());
 
-  // WEBSOCKET
-  // const adapter = new WebsocketAdapter(app);
-  // app.useWebSocketAdapter(adapter);
-
 
   // Filter
   app.useGlobalFilters(

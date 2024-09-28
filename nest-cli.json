@@ -55,6 +55,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/shared/tsconfig.lib.json"
       }
+    },
+    "socket-gateway": {
+      "type": "application",
+      "root": "apps/socket-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/socket-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/socket-gateway/tsconfig.app.json"
+      }
     }
   }
 }

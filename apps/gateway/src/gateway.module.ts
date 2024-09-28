@@ -21,7 +21,6 @@ import { AllControllers } from './presentation/controllers';
 import { AcceptLanguageResolver, HeaderResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 import * as path from 'path';
 // import { validate } from './infrustructure/config/environment-config.validation';
-// import { SgatewayModule } from './sgateway/sgateway.module';
 
 
 
@@ -56,7 +55,6 @@ import * as path from 'path';
     LoggerModule,
     BcryptModule,
     JwtServiceModule,
-    // SgatewayModule,
   ],
   controllers: AllControllers,
   providers: [

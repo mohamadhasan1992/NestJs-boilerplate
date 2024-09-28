@@ -52,6 +52,22 @@ services:
       - kafka
     networks:
       - app-net
+  socket-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/socket-gateway/Dockerfile
+    container_name: socket-gateway
+    env_file:
+      - ./apps/socket-gateway/env/local.env
+    restart: always
+    ports:
+      - '81:81'
+    depends_on:
+      - mongo
+      - redis
+      - kafka
+    networks:
+      - app-net    
 
   mongo:
     image: mongo:5.0
