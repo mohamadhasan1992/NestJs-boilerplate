@@ -44,5 +44,5 @@ import { JwtTokenService } from '@shared/shared/jwt/jwt.service';
     },
   ],
 })
-export class SgatewayModule {}
+export class SocketGatewayModule {}
 

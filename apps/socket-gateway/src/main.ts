@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { GatewayModule } from 'apps/gateway/src/gateway.module';
 import { WebsocketAdapter } from './gateway/gateway.adapter';
 import { EnvironmentConfigService } from '@shared/shared/config/environment-config.service';
 import * as cookieParser from 'cookie-parser';
+import { SocketGatewayModule } from './socket-gateway.module';
 
 
 async function bootstrap() {
-  const app = await NestFactory.create(GatewayModule);
+  const app = await NestFactory.create(SocketGatewayModule);
 
   app.use(cookieParser());
   // WEBSOCKET
