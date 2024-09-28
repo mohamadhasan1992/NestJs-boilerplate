@@ -3,9 +3,9 @@ import { CreateConversationCommand } from '../../application/command/impl/conver
 import { GetMessageQuery } from '../../application/query/impl/message/get-message-query';
 import { GetConversationQuery } from '../../application/query/impl/conversation/get-conversation-query';
 import { DeleteConversationCommand } from '../../application/command/impl/conversation/delete-conversation.command';
-import { ConversationServiceController, ConversationServiceControllerMethods, FindConversationMessageRequest, FindConversationRequest } from '@shared/shared/proto/messenger';
+import { ConversationServiceController, ConversationServiceControllerMethods, FindConversationMessageRequest, FindConversationMessageResponse, FindConversationRequest, FindConversationResponse } from '@shared/shared/proto/messenger';
 import { Payload } from '@nestjs/microservices';
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { CreateConversationDto } from '@shared/shared/dto/conversation';
 
 
@@ -18,14 +18,12 @@ export class ConversationController implements ConversationServiceController {
     private readonly queryBus: QueryBus
   ) {}
 
-  @Post()
   async createConversation(
     @Payload() {createConversationDto, userId}: {createConversationDto: CreateConversationDto, userId: string},
   ){
     return await this.commandBus.execute(new CreateConversationCommand(userId, createConversationDto))
   }
 
-  @Delete()
   async deleteConversation(
     @Payload() {conversationId, userId}: {conversationId: string, userId: string},
   ){
@@ -36,14 +34,20 @@ export class ConversationController implements ConversationServiceController {
   async findConversationMessage(
     @Payload() {conversationId, limit, page, userId}: FindConversationMessageRequest
   ){
-    return await this.queryBus.execute(new GetMessageQuery(userId, conversationId, {page, limit}))    
+    const data = await this.queryBus.execute(new GetMessageQuery(userId, conversationId, {page, limit}))    
+    console.log("findConversationMessage data",data)
+    const response : FindConversationMessageResponse = data;
+    return response
   }
 
   async findConversation(
     @Payload() {limit, page, userId}: FindConversationRequest
   ){
-    return await this.queryBus.execute(new GetConversationQuery(userId, {page, limit}))
-  }
+    const data = await this.queryBus.execute(new GetConversationQuery(userId, {page, limit}))
+    console.log("findConversation data",data)
+    const response : FindConversationResponse = data;
+    return response
+    }
 
 
 }

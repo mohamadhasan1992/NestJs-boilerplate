@@ -22,11 +22,8 @@ export class Message extends AggregateRoot{
       return this._id
     }
 
-    getConversationById(): string {
-      if (typeof this.conversation === 'string') {
-        return this.conversation;
-      }
-      return this.conversation.getId();
+    getConversationById() {
+      return this.conversation;
     }
 
     getConversationPopulated(): Conversation | null {

@@ -9,7 +9,7 @@ export class Conversation extends AggregateRoot{
       private readonly _id: string,
       private creator: string,
       private recipient: string,
-      private last_message: string | Message,
+      private last_message: string | Message | null,
       private last_message_sent_at: Date,
     ) {
       super()
@@ -27,11 +27,8 @@ export class Conversation extends AggregateRoot{
       return this.recipient;
     }
 
-    getLastMessageById(): string {
-      if (typeof this.last_message === 'string') {
-        return this.last_message;
-      }
-      return this.last_message.getId();
+    getLastMessageById() {
+      return this.last_message;
     }
 
     getLastMessagePopulated(): Message | null {

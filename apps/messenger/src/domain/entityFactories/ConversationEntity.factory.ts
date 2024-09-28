@@ -13,7 +13,7 @@ export class ConversationEntityFactory implements EntityFactory<Conversation>{
         private readonly conversationRepository: IConversationRepository,
     ){}
 
-    async create(creator: string, recipient: string, last_message: string): Promise<Conversation> {
+    async create(creator: string, recipient: string, last_message: string | null): Promise<Conversation> {
         const conversation = new Conversation(
             new Types.ObjectId().toHexString(), 
             creator, 
@@ -21,6 +21,7 @@ export class ConversationEntityFactory implements EntityFactory<Conversation>{
             last_message,
             new Date()
         )
+
         await this.conversationRepository.create(conversation)
         return conversation
     }

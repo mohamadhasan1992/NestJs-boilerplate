@@ -24,7 +24,9 @@ export class CreateConversationCommandHandler implements ICommandHandler<CreateC
       content,
     } = createConversationDto;
     // create conversation
+
     const newConversation = await this.conversationEntityFactory.create(user, recipient, null)
+
     // create message using conversation id
     const newMessage = this.eventPublisher.mergeObjectContext(
       await this.messageEntityFactory.create(newConversation.getId(), user, content)

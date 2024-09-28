@@ -23,7 +23,7 @@ COPY --from=builder /app/proto ./dist/proto
 RUN npm ci --only=production
 
 # Expose the port for the service
-EXPOSE 2000
+# EXPOSE 3000
 
 # Start the service (in this case, the gateway service)
 CMD [ "node", "dist/apps/messenger/main" ]

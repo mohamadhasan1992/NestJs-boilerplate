@@ -1,10 +1,11 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CreateConversationDto } from '../../../../../libs/shared/src/dto/conversation/createConversation.dto';
-import { CONVERSATION_SERVICE_NAME, ConversationServiceClient, FindConversationMessageRequest, FindConversationRequest } from '@shared/shared/proto/messenger';
+import { CONVERSATION_SERVICE_NAME, ConversationServiceClient, FindConversationMessageRequest, FindConversationMessageResponse, FindConversationRequest, FindConversationResponse } from '@shared/shared/proto/messenger';
 import { FilterQuery } from 'mongoose';
 import { ApiGatewayMessengerKafkaService } from '../messaging/gateway-messenger-kafka.service';
 import { ConversationActionEnum } from '@shared/shared/enum';
+import { catchError, map } from 'rxjs';
 
 
 
@@ -49,6 +50,14 @@ export class ConversationService implements OnModuleInit {
       page
     }
     return this.conversationService.findConversationMessage(findConversationMessageRequest)
+    .pipe(
+      map((response: FindConversationMessageResponse) => {
+        return response
+      }),
+      catchError(error => {
+        throw new InternalServerErrorException(error.message);
+    })
+    )
   }
 
   // calling grpc
@@ -59,6 +68,14 @@ export class ConversationService implements OnModuleInit {
       userId
     }
     return this.conversationService.findConversation(findConversationRequest)
+    .pipe(
+      map((response: FindConversationResponse) => {
+        return response
+      }),
+      catchError(error => {
+        throw new InternalServerErrorException(error.message);
+    })
+    )
   }
 
   

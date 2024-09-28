@@ -5,7 +5,12 @@ services:
     build:
       context: .
       dockerfile: ./apps/gateway/Dockerfile
+      target: builder
     container_name: gateway
+    command: npm run start:dev gateway
+    volumes:
+      - .:/app
+      - api_node_modules:/app/node_modules
     env_file:
       - ./apps/gateway/env/local.env
     restart: always
@@ -23,7 +28,12 @@ services:
     build:
       context: .
       dockerfile: ./apps/user-management/Dockerfile
+      target: builder
     container_name: user-management
+    command: npm run start:dev user-management
+    volumes:
+      - .:/app
+      - api_node_modules:/app/node_modules
     env_file:
       - ./apps/user-management/env/local.env
     restart: always
@@ -40,6 +50,11 @@ services:
     build:
       context: .
       dockerfile: ./apps/messenger/Dockerfile
+      target: builder
+    command: npm run start:dev messenger
+    volumes:
+      - .:/app
+      - api_node_modules:/app/node_modules
     container_name: messenger
     env_file:
       - ./apps/messenger/env/local.env
@@ -91,7 +106,7 @@ services:
     environment:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:3500
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
@@ -101,6 +116,7 @@ services:
 volumes:
   mongo-data:
   redis-data:
+  api_node_modules:
 
 networks:
   app-net:

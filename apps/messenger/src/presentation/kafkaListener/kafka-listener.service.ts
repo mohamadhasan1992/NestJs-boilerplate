@@ -25,7 +25,6 @@ export class MessengerKafkaService {
         
         // Process the request
         const correlationId = request.correlationId;
-        console.log("recieved message", correlationId)
         const userData = await this.handleAuthRequest(request);
 
         // Send response back to the api-gateway
@@ -36,13 +35,14 @@ export class MessengerKafkaService {
 
   private async handleAuthRequest(request: any): Promise<any> {
     let response;
+    console.log("request from kafka", request)
     switch (request.action) {
         case ConversationActionEnum.CreateConversation:
           const createConversationDto : CreateConversationDto = {
             content: request.content,
             recipient: request.recipient
           }
-          response = await this.commandBus.execute(new CreateConversationCommand(request.user, createConversationDto))
+          response = await this.commandBus.execute(new CreateConversationCommand(request.userId, createConversationDto))
           break;
         case ConversationActionEnum.CreateMessage:
           const createMessageDto : CreateMessageDto = {
@@ -52,7 +52,7 @@ export class MessengerKafkaService {
             response = await this.commandBus.execute(new CreateMessageCommand(request.user, createMessageDto))
             break;
         case ConversationActionEnum.DeleteConversation:
-            response = await this.commandBus.execute(new DeleteConversationCommand(request.user, request.conversationId))
+            response = await this.commandBus.execute(new DeleteConversationCommand(request.userId, request.conversationId))
             break;
         case ConversationActionEnum.DeleteMessage:
           response = await this.commandBus.execute(new DeleteMessageCommand(request.messageId, request.user))

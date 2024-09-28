@@ -15,7 +15,7 @@ export class ConversationSchemaFactory implements EntitySchemaFactory<Conversati
             _id: new Types.ObjectId(conversation.getId()),
             creator: conversation.getCreator(),
             recipient: conversation.getRecipient(),
-            last_message: conversation.getLastMessageById() as unknown as mongoose.Types.ObjectId,
+            last_message: conversation.getLastMessageById() ? conversation.getLastMessageById()  as unknown as mongoose.Types.ObjectId : null,
             last_message_sent_at: conversation.getLastMessageSentAt(),
         }
     }

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import mongoose, { Types } from "mongoose";
+import { Types } from "mongoose";
 import { EntitySchemaFactory } from "@shared/shared";
 import { MessageSchema } from "../schema/message.schema";
 import { Message } from "../../domain/entities/message";
@@ -14,7 +14,7 @@ export class MessageSchemaFactory implements EntitySchemaFactory<MessageSchema, 
     create(message: Message): MessageSchema {
         return{
             _id: new Types.ObjectId(message.getId()),
-            conversation: message.getConversationById() as unknown as mongoose.Types.ObjectId,
+            conversation: message.getConversationById() as unknown as string,
             sender: message.getSender(),
             content: message.getContent(),
             status: message.getDefaultMessageStatus(),

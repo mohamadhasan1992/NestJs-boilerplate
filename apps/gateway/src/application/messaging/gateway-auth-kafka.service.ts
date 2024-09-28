@@ -10,7 +10,7 @@ export class ApiGatewayAuthKafkaService {
   constructor(private readonly kafkaService: KafkaService) {
     // Initialize response listener
     this.kafkaService.createConsumer(
-      'api-gateway-group', 
+      'api-gateway-auth-group', 
       KafkaTopics.KafkaAuthenticationResponseTopic, 
       async (payload) => {
         const { value } = payload.message;

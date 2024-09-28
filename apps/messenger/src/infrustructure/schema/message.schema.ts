@@ -7,7 +7,7 @@ import { MessageStatusEnum } from '../../domain/object-values/MessageStatus.enum
 @Schema({versionKey: false, collection: "Message", timestamps: true})
 export class MessageSchema extends IdentifiableEntitySchema {
   @Prop({type: mongoose.Schema.Types.ObjectId, ref: "Conversation"})
-  conversation: mongoose.Types.ObjectId;
+  conversation: string;
 
   @Prop({type: String})
   sender: string;

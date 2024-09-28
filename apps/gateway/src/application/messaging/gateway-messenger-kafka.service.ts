@@ -10,7 +10,7 @@ export class ApiGatewayMessengerKafkaService {
   constructor(private readonly kafkaService: KafkaService) {
     // Initialize response listener
     this.kafkaService.createConsumer(
-      'messenger-group', 
+      'api-gateway-messenger-group', 
       KafkaTopics.KafkaMessengerResponseTopic, 
       async (payload) => {
         const { value } = payload.message;
