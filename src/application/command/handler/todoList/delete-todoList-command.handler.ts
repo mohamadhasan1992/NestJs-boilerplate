@@ -19,13 +19,14 @@ export class DeleteTodoListCommandHandler implements ICommandHandler<DeleteTodoL
     if(!todoList){
       throw new NotFoundException("error.TodoList_NOT_FOUND")
     }
-    if(todoList.getUser() !== userId){
+    if(todoList.getUser() != userId){
       throw new UnauthorizedException("error.TODOLIST_NOT_YOURS")
     }
 
     const deletedTodoList = this.eventPublisher.mergeObjectContext(
-      await this.todoListRepository.delete({_id: todoListId})
+      todoList
     );
+    await this.todoListRepository.delete({_id: todoListId}, todoList)
     deletedTodoList.DeleteComplete()
     deletedTodoList.commit();
     

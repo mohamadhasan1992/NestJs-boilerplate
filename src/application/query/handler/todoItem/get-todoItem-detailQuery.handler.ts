@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Inject } from '@nestjs/common';
+import { Inject, NotFoundException } from '@nestjs/common';
 import { ITodoItemRepository} from 'src/shared/adapters';
 import { GetTodoItemDetailQuery } from '../../impl/todoItem/get-todoItem-detail-query';
 
@@ -14,6 +14,12 @@ export class getTodoItemDetailHandler implements IQueryHandler<GetTodoItemDetail
   ) {}
 
   async execute({todoItemId}: GetTodoItemDetailQuery) {
-    return this.todoItemRepository.findOneById(todoItemId)
+    const todoItem = await this.todoItemRepository.findOneById(todoItemId)
+    if(!!todoItem){
+      return todoItem
+    }else{
+      throw new NotFoundException("error.TODOITEM_NOT_FOUND")
+    }
+
   }
 }

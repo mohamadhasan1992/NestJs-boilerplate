@@ -30,6 +30,7 @@ import { TodoItemSchemaFactory } from './infrustructure/schema-factory/todoItem-
 import { TodoItemEntityFactory } from './domain/entityFactories/TodoItemEntity.factory';
 import { UserEntityFactory } from './domain/entityFactories/UserEntity.factory';
 import { TodoListEntityFactory } from './domain/entityFactories/TodoListEntity.factory';
+import { allSagas } from './application/saga';
 
 
 
@@ -82,9 +83,8 @@ import { TodoListEntityFactory } from './domain/entityFactories/TodoListEntity.f
     ...AuthStrategies,
     ...CommandHandlers,
     ...QueryHandlers,
-    ...EventHandlers
-
-
+    ...EventHandlers,
+    ...allSagas
   ],
 })
 export class AppModule {}

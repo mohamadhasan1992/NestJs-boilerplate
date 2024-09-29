@@ -1,4 +1,5 @@
 import { AggregateRoot } from "@nestjs/cqrs";
+import { TodoListDeletedEvent } from "../events/impl/todoList/todoList-deleted.event";
 
 
 
@@ -31,6 +32,6 @@ export class TodoList extends AggregateRoot{
       // this.apply(new UserSignedUpEvent(this._id, this.phone_number));
     }
     DeleteComplete(){
-      
+      this.apply(new TodoListDeletedEvent(this._id));
     }
 }

@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { BaseEntityRepository } from "src/infrustructure/database/base-entity.repository";
 import { UserSchema } from "../schema/user.schema";
-import { UserSchemaFactory } from "../schema-factory/user-schema.factory";
 import { User } from "src/domain/entities/user";
+import { IUserSchemaFactory } from "src/shared/adapters";
 
 
 
@@ -13,7 +13,8 @@ export class UserEntityRepository extends BaseEntityRepository<UserSchema, User>
     constructor(
         @InjectModel("User")
         userModel: Model<UserSchema>,
-        userSchemaFactory: UserSchemaFactory
+        @Inject("UserSchemaFactory")
+        userSchemaFactory: IUserSchemaFactory,
     ){
         super(userModel, userSchemaFactory);
     }

@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Inject } from '@nestjs/common';
+import { Inject, NotFoundException } from '@nestjs/common';
 import { ITodoListRepository } from 'src/shared/adapters';
 import { GetTodoListDetailQuery } from '../../impl/todoList/get-todoList-detail-query';
 
@@ -14,6 +14,12 @@ export class getTodoListDetalHandler implements IQueryHandler<GetTodoListDetailQ
   ) {}
 
   async execute({todoListId}: GetTodoListDetailQuery) {
-    return this.todoListRepository.findOneById(todoListId)
+    const todoList = await this.todoListRepository.findOneById(todoListId)
+
+    if(!!todoList){
+      return todoList
+    }else{
+      throw new NotFoundException("error.TODOLIST_NOT_FOUND")
+    }
   }
 }

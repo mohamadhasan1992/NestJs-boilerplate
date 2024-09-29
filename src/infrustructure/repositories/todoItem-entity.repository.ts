@@ -1,10 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { BaseEntityRepository } from "src/infrustructure/database/base-entity.repository";
 import { TodoItemSchema } from "../schema/todoItem.schema";
 import { TodoItem } from "src/domain/entities/todoItem";
-import { TodoItemSchemaFactory } from "../schema-factory/todoItem-schema.factory";
+import { ITodoItemSchemaFactory } from "src/shared/adapters";
 
 
 
@@ -13,7 +13,9 @@ export class TodoItemEntityRepository extends BaseEntityRepository<TodoItemSchem
     constructor(
         @InjectModel("TodoItem")
         todoItemModel: Model<TodoItemSchema>,
-        todoItemSchemaFactory: TodoItemSchemaFactory
+        @Inject("TodoItemSchemaFactory")
+        todoItemSchemaFactory: ITodoItemSchemaFactory,
+
     ){
         super(todoItemModel, todoItemSchemaFactory);
     }

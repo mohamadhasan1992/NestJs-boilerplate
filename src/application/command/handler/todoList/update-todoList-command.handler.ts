@@ -22,13 +22,14 @@ export class UpdateTodoListCommandHandler implements ICommandHandler<UpdateTodoL
     if(!todoList){
       throw new NotFoundException("error.TodoList_NOT_FOUND")
     }
-    if(todoList.getUser() !== userId){
+    if(todoList.getUser() != userId){
       throw new UnauthorizedException("error.TODOLIST_NOT_YOURS")
     }
     todoList.updateTitle(title);
     const newTodoList = this.eventPublisher.mergeObjectContext(
-      await this.todoListRepository.findOneAndReplaceById(todoListId, todoList)
+      todoList
     );
+    await this.todoListRepository.findOneAndReplaceById(todoListId, todoList)
     newTodoList.commit();
     
     return {

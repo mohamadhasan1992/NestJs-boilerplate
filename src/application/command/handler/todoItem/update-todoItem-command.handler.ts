@@ -25,7 +25,7 @@ export class UpdateTodoItemCommandHandler implements ICommandHandler<UpdateTodoI
     if(!todoItem){
       throw new NotFoundException("error.TodoItem_NOT_FOUND")
     }
-    if(todoItem.getUser() !== userId){
+    if(todoItem.getUser() != userId){
       throw new UnauthorizedException("error.TODOItem_NOT_YOURS")
     }
     todoItem.updateDetail(
@@ -35,8 +35,9 @@ export class UpdateTodoItemCommandHandler implements ICommandHandler<UpdateTodoI
       todoList
     );
     const newTodoItem = this.eventPublisher.mergeObjectContext(
-      await this.todoItemRepository.findOneAndReplaceById(todoItemId, todoItem)
+      todoItem
     );
+    await this.todoItemRepository.findOneAndReplaceById(todoItemId, todoItem)
 
     todoItem.updated()
     newTodoItem.commit();

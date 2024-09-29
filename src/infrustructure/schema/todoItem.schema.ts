@@ -19,8 +19,7 @@ export class TodoItemSchema extends IdentifiableEntitySchema {
     @Prop({type: String})
     description: string;
 
-    @Prop({type: PriorityEnum, default: PriorityEnum.Mid})
-    priority: number;
-
+    @Prop({type: String, enum: PriorityEnum, default: PriorityEnum.Mid})
+    priority: PriorityEnum;
 }
 
