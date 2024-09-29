@@ -13,25 +13,17 @@ export class UserSchemaFactory implements EntitySchemaFactory<UserSchema, User>{
     create(user: User): UserSchema {
         return{
             _id: new Types.ObjectId(user.getId()),
-            fullName: user.getFullName(),
             email: user.getEmail(),
             password: user.getPassword(),
-            phone_number: user.getPhoneNumber(),
-            role: user.getRole(),
-            refreshToken: user.getRefreshToken(),
-            status: user.getStatus()
+            refreshToken: user.getRefreshToken()
         }
     }
     createFromSchema(user: UserSchema): User {
         return new User(
             user._id.toHexString(),
-            user.fullName,
             user.email,
             user.password,
-            user.phone_number,
-            user.role,
-            user.refreshToken,
-            user.status
+            user.refreshToken
         )
     }
     

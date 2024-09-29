@@ -4,10 +4,7 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { EnvironmentConfigService } from 'src/infrustructure/config/environment-config.service';
 import { LoggerService } from 'src/infrustructure/logger/logger.service';
-import { TokenPayload } from 'src/infrustructure/adapters/token-payload.interface';
-import { IBcryptService } from 'src/infrustructure/adapters/bcrypt.interface';
-import { IUserRepository } from 'src/domain/adapters/repository.interface';
-import { I18nService } from 'nestjs-i18n';
+import { IBcryptService, IUserRepository, TokenPayload } from 'src/shared/adapters';
 
 
 
@@ -20,7 +17,6 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
     private readonly userRepository: IUserRepository,
     @Inject("BcryptService")
     private readonly bcryptService: IBcryptService,
-    private readonly i18nService: I18nService
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
@@ -45,13 +41,10 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
       return {
         _id: user.getId(),
         email: user.getEmail(),
-        phone_number: user.getPhoneNumber(),
-        status: user.getStatus(),
-        role: user.getRole()
       };;
     }else{
       this.logger.warn('JwtStrategy', `User not found or hash not correct`);
-      throw new UnauthorizedException(this.i18nService.t('error.REFRESH_TKONE_UNVALID'));
+      throw new UnauthorizedException('error.REFRESH_TKONE_UNVALID');
     }
 
   }

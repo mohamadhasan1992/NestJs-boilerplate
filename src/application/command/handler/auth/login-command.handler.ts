@@ -1,10 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
-import { IBcryptService } from 'src/infrustructure/adapters/bcrypt.interface';
 import { LoginCommand } from '../../impl/auth/login.command';
-import { IUserRepository } from 'src/domain/adapters/repository.interface';
-import { JWTConfig } from 'src/domain/adapters/jwt.interface';
-import { IJwtService, IJwtServicePayload } from 'src/infrustructure/adapters/jwt-service.interface';
+import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from 'src/shared/adapters';
 
 
 
@@ -24,10 +21,10 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
 
   async execute({loginUserDto}: LoginCommand){
     const {
-      phone_number,
+      email,
     } = loginUserDto;
     // find user
-    const user = await this.userRepository.findByPhoneNumber(phone_number);
+    const user = await this.userRepository.findByEmail(email);
     const payload: IJwtServicePayload = { userId: user.getId() };
     const jwtSecret = this.jwtConfig.getJwtSecret();
     const jwtExpiresIn = this.jwtConfig.getJwtExpirationTime() + 's';

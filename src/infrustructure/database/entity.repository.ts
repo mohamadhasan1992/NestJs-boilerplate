@@ -2,11 +2,13 @@ import { NotFoundException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import {
   FilterQuery,
-  Model
+  Model,
+  PopulateOptions
 } from 'mongoose';
 
 import { EntitySchemaFactory } from './entity-schema.factory';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
+import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
 
 export abstract class EntityRepository<
   TSchema extends IdentifiableEntitySchema,
@@ -44,6 +46,50 @@ export abstract class EntityRepository<
     ).map(entityDocument =>
       this.entitySchemaFactory.createFromSchema(entityDocument as unknown as TSchema),
     );
+  }
+
+  protected async findPaginated(
+    entityFilterQuery?: FilterQuery<TSchema>,
+    popOptions?: PopulateOptions[],
+    fields?: string[] 
+  ): Promise<IPaginationData<TEntity>> {
+    const sortBy = entityFilterQuery?.sort?.split(',')?.join(' ') || "-createdAt";
+    const page = entityFilterQuery?.page * 1 || 1;
+    const limit = entityFilterQuery?.limit * 1 || 10;
+    const skip = (page-1) * limit;
+    if(entityFilterQuery){
+      const excludedFields = ['page', 'sort', 'limit', 'fields'];
+      excludedFields.forEach((el) => delete entityFilterQuery[el]);
+    }
+    let queryStr = JSON.stringify(entityFilterQuery);
+
+    queryStr = queryStr.replace(
+      /\b(gte|gt|lte|lt|regex)\b/g,
+      (match) => `$${match}`
+    );
+    const totalDocs = await this.entityModel.countDocuments(JSON.parse(queryStr));
+
+    return{
+      data: (
+        await this.entityModel.find(JSON.parse(queryStr), {}, { lean: true })
+        .sort(sortBy)
+        .limit(limit)
+        .select(fields)
+        .skip(skip)
+        .populate(popOptions)
+      ).map(entityDocument =>
+        this.entitySchemaFactory.createFromSchema(entityDocument as unknown as TSchema),
+      ),
+      pagination: {
+        hasNextPage: totalDocs > (skip+limit),
+        hasPrevPage: page > 1 ,
+        limit,
+        nextPage: totalDocs > (skip+limit) ? page + 1 : null,
+        page,
+        totalDocs,
+        totalPages: Math.ceil(totalDocs/limit)
+      }
+    } 
   }
 
   async create(entity: TEntity): Promise<void> {

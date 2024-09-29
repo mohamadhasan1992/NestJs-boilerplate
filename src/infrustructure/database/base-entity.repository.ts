@@ -3,6 +3,7 @@ import { FilterQuery, Types } from 'mongoose';
 import { EntityRepository } from './entity.repository';
 
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
+import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
 
 export abstract class BaseEntityRepository<
   TSchema extends IdentifiableEntitySchema,
@@ -21,7 +22,7 @@ export abstract class BaseEntityRepository<
     return this.findOne({ _id: new Types.ObjectId(id) } as FilterQuery<TSchema>);
   }
 
-  async findAll(filterQuery: FilterQuery<TSchema>): Promise<TEntity[]> {
-    return this.find(filterQuery);
+  async findAll(filterQuery: FilterQuery<TSchema>): Promise<IPaginationData<TEntity>> {
+    return this.findPaginated(filterQuery);
   }
 }

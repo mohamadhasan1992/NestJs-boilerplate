@@ -1,12 +1,7 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
-import { CACHE_MANAGER } from "@nestjs/cache-manager";
-import { Cache } from "cache-manager";
-import { IBcryptService } from "src/infrustructure/adapters/bcrypt.interface";
 import { UpdateRefreshTokenCommand } from "../../impl/auth/update-refresh-token-command";
-import { IUserRepository } from "src/domain/adapters/repository.interface";
-import { JWTConfig } from "src/domain/adapters/jwt.interface";
-import { IJwtService, IJwtServicePayload } from "src/infrustructure/adapters/jwt-service.interface";
+import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from "src/shared/adapters";
 
 
 
@@ -16,7 +11,6 @@ export class UpdateRefreshTokenCommandHandler implements ICommandHandler<UpdateR
     constructor(
         @Inject("UserRepository")
         private readonly userRepository: IUserRepository,
-        @Inject(CACHE_MANAGER) private cacheManager: Cache,
         @Inject("JwtService")
         private readonly jwtTokenService: IJwtService,
         @Inject("JwtConfig")

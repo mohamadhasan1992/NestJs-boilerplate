@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DatabaseConfig } from 'src/domain/adapters/database.interface';
-import { JWTConfig } from 'src/domain/adapters/jwt.interface';
+import { DatabaseConfig, JWTConfig } from 'src/shared/adapters';
 
 
 @Injectable()

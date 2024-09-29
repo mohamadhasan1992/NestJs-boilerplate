@@ -1,10 +1,8 @@
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
-import { BadRequestException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { LoggerService } from 'src/infrustructure/logger/logger.service';
-import { IBcryptService } from 'src/infrustructure/adapters/bcrypt.interface';
-import { IUserRepository } from 'src/domain/adapters/repository.interface';
-import { I18nService } from 'nestjs-i18n';
+import { IBcryptService, IUserRepository } from 'src/shared/adapters';
 
 
 
@@ -16,31 +14,26 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     private readonly userRepository: IUserRepository,
     @Inject("BcryptService")
     private readonly bcryptService: IBcryptService,
-    private readonly i18nService: I18nService
   ) {
-    super({ usernameField: 'phone_number' });
+    super({ usernameField: 'email' });
   }
 
-  async validate(phone_number: string, password: string) {
-    if (!phone_number || !password) {
+  async validate(email: string, password: string) {
+    if (!email || !password) {
       this.logger.warn('LocalStrategy', `phone_number or password is missing, BadRequestException`);
-      throw new BadRequestException(this.i18nService.t("USER_NOT_FOUND"))
+      throw new BadRequestException("error.USER_NOT_FOUND")
     }
 
-    const user = await this.userRepository.findByPhoneNumber(phone_number);
+    const user = await this.userRepository.findByEmail(email);
     if (!user) {
       return null;
-    }
-    if(user.isNotActive()){
-      throw new UnauthorizedException(this.i18nService.t("error.ACTIVATE_ACCOUNT_FIRST"))
     }
     const userPass = user.getPassword();
     const match = await this.bcryptService.compare(password, userPass);
     if (user && match) {
       return {
         _id: user.getId(),
-        fullName: user.getFullName(),
-        phone_number: user.getPhoneNumber()
+        email: user.getEmail(),
       };
     }
     return null;

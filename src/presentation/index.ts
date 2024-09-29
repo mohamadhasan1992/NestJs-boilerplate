@@ -1,5 +1,6 @@
-import { AuthController } from "./auth/auth.controller";
-import { CrmUserController } from "./user/crm/crm.user.controller";
+import { AuthController } from "./controllers/auth/auth.controller";
+import { TodoItemController } from "./controllers/todoItem/todoItem.controller";
+import { TodoListController } from "./controllers/todolist/todoList.controller";
 
 
 
@@ -8,5 +9,6 @@ import { CrmUserController } from "./user/crm/crm.user.controller";
 
 export const AllControllers = [
     AuthController,
-    CrmUserController
+    TodoListController,
+    TodoItemController
 ]

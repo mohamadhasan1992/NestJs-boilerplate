@@ -3,13 +3,13 @@ version: '3.8'
 services:
   property-notifier:
     build: .
-    container_name: property-notifier
+    container_name: todolist
     restart: always
     ports:
       - '3000:3000'
     command: npm run start:dev
     environment:
-      MONGO_URI: mongodb://mongo:27017/property-notifier
+      MONGO_URI: mongodb://mongo:27017/todolist
     depends_on:
       - mongo
     networks:
@@ -18,7 +18,7 @@ services:
       - .:/app
   mongo:
     image: mongo:5.0
-    container_name: mongodb-property-notifier
+    container_name: mongodb-todolist
     restart: always
     ports:
       - '27017:27017'

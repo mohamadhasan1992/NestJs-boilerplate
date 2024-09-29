@@ -1,6 +1,0 @@
-{
-    "USER_ALREADY_EXISTS": "User with this phone number already exists!",
-    "TOKEN_IS_NOT_VALID": "Token is not valid. please try again!",
-    "REFRESH_TKONE_UNVALID": "User not found or hash not correct",
-    "ACTIVATE_ACCOUNT_FIRST": "Please activate yoyr account first"
-}
