@@ -135,78 +135,6 @@
 					},
 					"response": [
 						{
-							"name": "2-login 201",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/api/v1/auth/login",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"login"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZhOWNjZTQyZTAwMDM1ZDQ5ODc4ZmEiLCJpYXQiOjE3Mjc3MDAyMDMsImV4cCI6MTcyNzcwMjAwM30.In2xSVR9MUOAk9Cvk1ihUd_k_1c5HCVutI9jneT9Nb0; Path=/; HttpOnly; Secure; SameSite=None"
-								},
-								{
-									"key": "Set-Cookie",
-									"value": "Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZhOWNjZTQyZTAwMDM1ZDQ5ODc4ZmEiLCJpYXQiOjE3Mjc3MDAyMDMsImV4cCI6MTcyNzc4NjYwM30.EtAKdQ0qH-PELt-aq04LhhF9eT24h0KgGplPq3QpSfU; Path=/; HttpOnly; Secure; SameSite=None"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "29"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"1d-hvCJ1fm6NWRCGX9GgJsMNC8uG5M\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 30 Sep 2024 12:43:23 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"SUCCESS.LOGEDIN\"\n}"
-						},
-						{
 							"name": "2-login 401",
 							"originalRequest": {
 								"method": "POST",
@@ -269,6 +197,78 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:44:34.714Z\",\n    \"path\": \"/api/v1/auth/login\",\n    \"message\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "2-login 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiMTAwMDg2NWYwOTk4NzcwNGIxMmYiLCJpYXQiOjE3Mjc3Mjk2NjgsImV4cCI6MTcyNzczMTQ2OH0.0T2SrTDXUNLqA-hEEFPjesN8TG_f18Li1FF96U49fyc; Path=/; Secure"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiMTAwMDg2NWYwOTk4NzcwNGIxMmYiLCJpYXQiOjE3Mjc3Mjk2NjgsImV4cCI6MTcyNzgxNjA2OH0.orK96C2RRQXn5v1n3I0IZDoJEUsgruR2C6jOF60RWdo; Path=/; Secure"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d8-6iC3oVO/0W52QnVSLVVJW3Z6SVQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 20:54:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"SUCCESS.LOGEDIN\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiMTAwMDg2NWYwOTk4NzcwNGIxMmYiLCJpYXQiOjE3Mjc3Mjk2NjgsImV4cCI6MTcyNzczMTQ2OH0.0T2SrTDXUNLqA-hEEFPjesN8TG_f18Li1FF96U49fyc\"\n}"
 						}
 					]
 				},
@@ -505,21 +505,11 @@
 				{
 					"name": "1- create todolist",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"list 2\"\r\n}",
+							"raw": "{\r\n    \"title\": \"list 1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -604,7 +594,7 @@
 							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:44:03.573Z\",\n    \"path\": \"/api/v1/todo-list\",\n    \"message\": \"Unauthorized\"\n}"
 						},
 						{
-							"name": "1- create todolist 200",
+							"name": "1- create todolist 201",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -652,7 +642,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 30 Sep 2024 12:45:05 GMT"
+									"value": "Mon, 30 Sep 2024 20:55:14 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1362,7 +1352,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10&todoList=66faa0a79b99201f638a03cf",
+							"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10",
 							"host": [
 								"localhost"
 							],
@@ -1380,10 +1370,6 @@
 								{
 									"key": "limit",
 									"value": "10"
-								},
-								{
-									"key": "todoList",
-									"value": "66faa0a79b99201f638a03cf"
 								}
 							]
 						}
@@ -1658,7 +1644,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"item 1 list 1\",\r\n    \"description\": \"this is a item 1 added to list 1\",\r\n    \"todoList\": \"66faa0a79b99201f638a03cf\",\r\n    \"priority\": 2\r\n}",
+							"raw": "{\r\n    \"title\": \"item 1 list 1\",\r\n    \"description\": \"this is a item 1 added to list 1\",\r\n    \"todoList\": \"66fb1032865f09987704b13e\",\r\n    \"priority\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1814,7 +1800,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"item2 updated item 3\"\r\n    // \"description\": \"this is a item 5 added to list 2 updateds\",\r\n    // \"priority\": 1,\r\n    // \"todoList\": \"66f9cafa3dae20da6751e993\"\r\n}",
+							"raw": "{\r\n    \"priority\": 1,\r\n    \"description\": \"this is a item 5 added to list 2 updateds\",\r\n    // \"todoList\": \"66f9cafa3dae20da6751e993\",\r\n    \"title\": \"item2 updated item 3 test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1822,7 +1808,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+							"raw": "localhost:3000/api/v1/todo-item/66fb105e865f09987704b14d",
 							"host": [
 								"localhost"
 							],
@@ -1831,7 +1817,7 @@
 								"api",
 								"v1",
 								"todo-item",
-								"66faa0f49b99201f638a03e9"
+								"66fb105e865f09987704b14d"
 							]
 						}
 					},
@@ -2104,7 +2090,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/v1/todo-item/66faa0bb9b99201f638a03d8",
+							"raw": "localhost:3000/api/v1/todo-item/66fb105e865f09987704b14d",
 							"host": [
 								"localhost"
 							],
@@ -2113,7 +2099,7 @@
 								"api",
 								"v1",
 								"todo-item",
-								"66faa0bb9b99201f638a03d8"
+								"66fb105e865f09987704b14d"
 							]
 						}
 					},

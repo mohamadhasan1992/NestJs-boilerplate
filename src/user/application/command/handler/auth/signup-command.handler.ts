@@ -22,7 +22,8 @@ export class SignupCommandHandler implements ICommandHandler<SignUpCommand> {
       password,
     } = signUpUserDto;
     const ifUserExists = await this.userRepository.findByEmail(email);
-    if(ifUserExists){
+
+    if(!!ifUserExists){
       throw new BadRequestException(
         "error.USER_ALREADY_EXISTS"
       )

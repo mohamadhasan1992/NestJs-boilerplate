@@ -1,5 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { Inject } from '@nestjs/common';
+import { Inject, NotFoundException } from '@nestjs/common';
 import { LoginCommand } from '../../impl/auth/login.command';
 import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from 'shared/adapters';
 
@@ -25,6 +25,9 @@ export class loginCommandHandler implements ICommandHandler<LoginCommand> {
     } = loginUserDto;
     // find user
     const user = await this.userRepository.findByEmail(email);
+    if(!user){
+      throw new NotFoundException("error.USER_NOT_FOUND")
+    }
     const payload: IJwtServicePayload = { userId: user.getId() };
     const jwtSecret = this.jwtConfig.getJwtSecret();
     const jwtExpiresIn = this.jwtConfig.getJwtExpirationTime() + 's';
