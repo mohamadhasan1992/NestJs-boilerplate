@@ -1,9 +1,8 @@
-import { AggregateRoot } from "@nestjs/cqrs";
 import { PriorityEnum } from "../object-values/Priority.enum";
 
 
 
-export class TodoItem extends AggregateRoot{
+export class TodoItem{
     constructor(
       private readonly _id: string,
       private readonly user: string,
@@ -12,9 +11,7 @@ export class TodoItem extends AggregateRoot{
       private description: string,
       private priority: PriorityEnum,
 
-    ) {
-      super()
-    }
+    ) {}
 
     getId(){
       return this._id
@@ -48,16 +45,5 @@ export class TodoItem extends AggregateRoot{
       this.description = description || this.description; 
       this.priority = priority || this.priority; 
       this.todoList = todoList || this.todoList; 
-    }
-
-    newTodoItemCreated(){
-      // this.apply(new UserSignedUpEvent(this._id, this.phone_number));
-    }
-
-    updated(){
-      
-    }
-    DeleteComplete(){
-      
     }
 }

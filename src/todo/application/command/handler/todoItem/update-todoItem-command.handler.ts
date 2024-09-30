@@ -1,4 +1,4 @@
-import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import {  ITodoItemRepository} from 'src/shared/adapters';
 import { UpdateTodoItemCommand } from '../../impl/todoItem/update-todoItem.command';
@@ -11,7 +11,6 @@ export class UpdateTodoItemCommandHandler implements ICommandHandler<UpdateTodoI
   constructor(
     @Inject("TodoItemRepository")
     private readonly todoItemRepository: ITodoItemRepository,
-    private readonly eventPublisher: EventPublisher,
   ) {}
 
   async execute({todoItemId, updateTodoItemDto, userId}: UpdateTodoItemCommand): Promise<any> {
@@ -21,7 +20,7 @@ export class UpdateTodoItemCommandHandler implements ICommandHandler<UpdateTodoI
       priority,
       todoList
     } = updateTodoItemDto;
-    const todoItem = await this.todoItemRepository.findOneById(todoItemId);
+    const todoItem = await this.todoItemRepository.findOne({_id: todoItemId});
     if(!todoItem){
       throw new NotFoundException("error.TodoItem_NOT_FOUND")
     }
@@ -34,14 +33,8 @@ export class UpdateTodoItemCommandHandler implements ICommandHandler<UpdateTodoI
       priority,
       todoList
     );
-    const newTodoItem = this.eventPublisher.mergeObjectContext(
-      todoItem
-    );
-    await this.todoItemRepository.findOneAndReplaceById(todoItemId, todoItem)
+    await this.todoItemRepository.findOneAndReplace({_id: todoItemId}, todoItem)
 
-    todoItem.updated()
-    newTodoItem.commit();
-    
     return {
       message: 
       "success.TODOItem_UPDATED_SUCCESSFULLY"

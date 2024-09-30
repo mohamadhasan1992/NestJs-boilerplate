@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from '../../../shared/database/identifiable-entity.schema';
 import mongoose from 'mongoose';
 
@@ -13,4 +13,13 @@ export class TodoListSchema extends IdentifiableEntitySchema {
     title:  string;
 
 }
+
+
+export const TodoListDocumentFactory = SchemaFactory.createForClass(TodoListSchema)
+
+TodoListDocumentFactory.virtual('TodoItems', {
+    ref: () => "TodoItem",
+    localField: '_id',
+    foreignField: 'todoList'
+});
 

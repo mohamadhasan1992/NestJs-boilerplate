@@ -1,11 +1,12 @@
 import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
 import { CurrentUser, IAuthenticatedUser, JwtAuthGuard, LoginGuard } from 'src/shared';
 import { LoginCommand } from 'src/user/application/command/impl/auth/login.command';
 import { SignUpCommand } from 'src/user/application/command/impl/auth/signup.command';
 import { LoginUserDto } from 'src/user/application/dto/auth/login-user.dto';
 import { SignUpUserDto } from 'src/user/application/dto/auth/signup-user.dto';
+import { GetMeQuery } from 'src/user/application/query/impl/auth/get-me-query';
 
 
 
@@ -17,6 +18,7 @@ import { SignUpUserDto } from 'src/user/application/dto/auth/signup-user.dto';
 export class AuthController {
   constructor(
     private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus
 ) {}
 
     
@@ -43,10 +45,10 @@ export class AuthController {
 
     @Get('me')
     @UseGuards(JwtAuthGuard)
-    getMe(
+    async getMe(
         @CurrentUser() user: IAuthenticatedUser
     ) {
-        return user;
+        return await this.queryBus.execute(new GetMeQuery(user._id))
     }
 
 

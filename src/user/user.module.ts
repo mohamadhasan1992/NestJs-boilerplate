@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { CqrsModule } from '@nestjs/cqrs';
 import { DatabaseModule } from 'src/shared/database/database.module';
-import { SchemaFactory } from '@nestjs/mongoose';
-import { UserSchema } from './infrustructure/schema/user.schema';
+import { UserDocumentFactory } from './infrustructure/schema/user.schema';
 import { JwtModule as JwtTokenModule } from 'src/shared/services/jwt/jwt.module';
 import { AllControllers } from './presentation';
 import { UserEntityRepository } from './infrustructure/repositories/user-entity.repository';
@@ -13,7 +12,7 @@ import { CommandHandlers } from './application/command';
 import { QueryHandlers } from './application/query';
 import { EventHandlers } from './application/event';
 import { allSagas } from './application/saga';
-import { BcryptService, EnvironmentConfigService, JwtTokenService } from 'src/shared';
+import { AuthStrategies, BcryptService, EnvironmentConfigService, JwtTokenService, LoggerModule } from 'src/shared';
 
 
 
@@ -24,10 +23,11 @@ import { BcryptService, EnvironmentConfigService, JwtTokenService } from 'src/sh
     DatabaseModule.forFeature([
       {
         name: "User",
-        schema: SchemaFactory.createForClass(UserSchema)
+        schema: UserDocumentFactory
       },
     ]),
     CqrsModule,
+    LoggerModule,
     JwtTokenModule
   ],
   controllers: AllControllers,
@@ -38,6 +38,7 @@ import { BcryptService, EnvironmentConfigService, JwtTokenService } from 'src/sh
     {provide: "BcryptService", useClass: BcryptService},
     {provide: "JwtService", useClass: JwtTokenService},
     {provide: "JwtConfig", useClass: EnvironmentConfigService},
+    ...AuthStrategies,
     ...CommandHandlers,
     ...QueryHandlers,
     ...EventHandlers,

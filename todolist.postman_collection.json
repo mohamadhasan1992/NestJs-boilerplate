@@ -1,0 +1,2236 @@
+{
+	"info": {
+		"_postman_id": "18285f96-f2c2-4ee7-9fa4-d942ad097829",
+		"name": "todolist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26926436",
+		"_collection_link": "https://warped-zodiac-956181.postman.co/workspace/My-Workspace~b5dd18a2-2a14-4e73-8af8-e004c448629c/collection/26926436-18285f96-f2c2-4ee7-9fa4-d942ad097829?action=share&source=collection_link&creator=26926436"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "1-signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1-signup 201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/signup",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-y/SS3FzpoiDDaZvYRL8EEjT6eWU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:42:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.SIGNUPED_SUCCESSFULLY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "2-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "2-login 201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"12345@Abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZhOWNjZTQyZTAwMDM1ZDQ5ODc4ZmEiLCJpYXQiOjE3Mjc3MDAyMDMsImV4cCI6MTcyNzcwMjAwM30.In2xSVR9MUOAk9Cvk1ihUd_k_1c5HCVutI9jneT9Nb0; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZhOWNjZTQyZTAwMDM1ZDQ5ODc4ZmEiLCJpYXQiOjE3Mjc3MDAyMDMsImV4cCI6MTcyNzc4NjYwM30.EtAKdQ0qH-PELt-aq04LhhF9eT24h0KgGplPq3QpSfU; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d-hvCJ1fm6NWRCGX9GgJsMNC8uG5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:43:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"SUCCESS.LOGEDIN\"\n}"
+						},
+						{
+							"name": "2-login 401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e-zqMZK9rFLBJApIN9bOF5uQH61r4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:44:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:44:34.714Z\",\n    \"path\": \"/api/v1/auth/login\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "3-me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3-me 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/me",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-qRYhQMAjbi9s55OKWdXgj1aslao\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:43:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"66fa9cce42e00035d49878fa\",\n    \"email\": \"tabrizi.mohamadhasan@yahoo.com\",\n    \"TodoLists\": []\n}"
+						},
+						{
+							"name": "3-me 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/me",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-gn5/9+T4QHrN0/M05urXIilexQM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:44:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:44:20.054Z\",\n    \"path\": \"/api/v1/auth/me\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "4-logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4-logout 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Authentication=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Refresh=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Authentication=removed; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "Refresh=removed; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-A4pv05GI8UbLHJgCQy5geZcEZbc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:43:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.LOGEDOUT\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "todolist",
+			"item": [
+				{
+					"name": "1- create todolist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"list 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-list",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1- create todolist 401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"list 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-QohjIA2DS8ZclktZFU0HU2FXmAs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:44:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:44:03.573Z\",\n    \"path\": \"/api/v1/todo-list\",\n    \"message\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "1- create todolist 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"list 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-HVnsTpKhkxH/M0ntQR+xP6rncTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:45:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOLIST_CREATED_SUCCESSFULLY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "2- listi todolist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-list?sort=title",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-list"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "title"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "2- listi todolist 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12e-1smMv3k9mS+662orsNE+L9Cakgg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:45:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa9d5142e00035d498790a\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"title\": \"list 1\"\n        },\n        {\n            \"_id\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"title\": \"list 3\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 2,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "2- listi todolist 200 paginated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list?page=1&limit=20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12e-APTtJ5TYxCWPnp7a7dlXN/wmNlw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:45:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa9d5142e00035d498790a\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"title\": \"list 1\"\n        },\n        {\n            \"_id\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"title\": \"list 3\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 20,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 2,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "2- listi todolist 200 sorted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list?sort=title",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "title"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12e-1smMv3k9mS+662orsNE+L9Cakgg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:45:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa9d5142e00035d498790a\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"title\": \"list 1\"\n        },\n        {\n            \"_id\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"title\": \"list 3\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 2,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "3- update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"updated title 3 -> 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-list",
+								"66fa9d5142e00035d498790a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3- update 401",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"updated title 3 -> 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa5fdfc896ac8ea9c935f3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-UKWS4d8i8/86T6LaoPuHoA3zwQI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:46:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T12:46:31.735Z\",\n    \"path\": \"/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3\",\n    \"message\": \"error.TODOLIST_NOT_YOURS\",\n    \"error\": \"Unauthorized\"\n}"
+						},
+						{
+							"name": "3- update 200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"updated title 3 -> 2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa9d5142e00035d498790a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-/faENDumg1JhmViu3dxAqFMhaW8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:47:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOLIST_UPDATED_SUCCESSFULLY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "4- delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-list",
+								"66fa9d5142e00035d498790b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4- delete 200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa9d5142e00035d498790a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-e5QpCE5cCwkos8Rrm7/p8vEjNC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:47:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOLIST_DELETED_SUCCESSFULLY\"\n}"
+						},
+						{
+							"name": "4- delete 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790b",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa9d5142e00035d498790b"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-wYUEjrEqj/ylv/85fS9upoeusT0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:47:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"timestamp\": \"2024-09-30T12:47:40.687Z\",\n    \"path\": \"/api/v1/todo-list/66fa9d5142e00035d498790b\",\n    \"message\": \"error.TodoList_NOT_FOUND\",\n    \"error\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "5- detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-list",
+								"66fa5fdfc896ac8ea9c935f3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5- detail not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa9d5142e00035d498790a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa9d5142e00035d498790a"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-Sa1U99Aqon/qY8uBSD/Y1mQkVGw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:48:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"timestamp\": \"2024-09-30T12:48:09.076Z\",\n    \"path\": \"/api/v1/todo-list/66fa9d5142e00035d498790a\",\n    \"message\": \"error.TODOLIST_NOT_FOUND\",\n    \"error\": \"Not Found\"\n}"
+						},
+						{
+							"name": "5- detail 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa5fdfc896ac8ea9c935f3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "391"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"187-HJPaCsX2aQ4bvEAtaudos6vo2Wo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:48:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"66fa5fdfc896ac8ea9c935f3\",\n    \"user\": \"66fa56185680e4f6f9be4603\",\n    \"title\": \"list 3\",\n    \"todoItems\": [\n        {\n            \"_id\": \"66fa6dceb8c05a324139818b\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\"\n        },\n        {\n            \"_id\": \"66fa6dd7b8c05a3241398192\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "5- detail 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-list",
+										"66fa5fdfc896ac8ea9c935f3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-4kO3RANiKoYaPZEIHx9GB9U9jWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:01.030Z\",\n    \"path\": \"/api/v1/todo-list/66fa5fdfc896ac8ea9c935f3\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "todoitem",
+			"item": [
+				{
+					"name": "1-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10&todoList=66faa0a79b99201f638a03cf",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-item"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "todoList",
+									"value": "66faa0a79b99201f638a03cf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1-list 200 sorted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item?sort=+priority",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "+priority"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "715"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2cb-0/dlDi8zP6rHDgfziaU7PVmxv0I\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:56:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa6dceb8c05a324139818b\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\",\n            \"priority\": \"0\"\n        },\n        {\n            \"_id\": \"66fa6dd7b8c05a3241398192\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\",\n            \"priority\": \"2\"\n        },\n        {\n            \"_id\": \"66fa9f9a8645d1244bee1bd4\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"todoList\": \"66fa9d5142e00035d498790a\",\n            \"title\": \"item 1 list 1\",\n            \"description\": \"this is a item 1 added to list 1\",\n            \"priority\": \"2\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 3,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "1-list 200 paginated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "715"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2cb-MJflSDSz8Cm3ZBwwuiem3/xgs9Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:57:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa9f9a8645d1244bee1bd4\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"todoList\": \"66fa9d5142e00035d498790a\",\n            \"title\": \"item 1 list 1\",\n            \"description\": \"this is a item 1 added to list 1\",\n            \"priority\": \"2\"\n        },\n        {\n            \"_id\": \"66fa6dd7b8c05a3241398192\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\",\n            \"priority\": \"2\"\n        },\n        {\n            \"_id\": \"66fa6dceb8c05a324139818b\",\n            \"user\": \"66fa56185680e4f6f9be4603\",\n            \"todoList\": \"66fa5fdfc896ac8ea9c935f3\",\n            \"title\": \"item 2 list 1\",\n            \"description\": \"this is a item 1 added to list 5\",\n            \"priority\": \"0\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 3,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "1-list 200 for specific todoList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10&todoList=66fa9d5142e00035d498790a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "todoList",
+											"value": "66fa9d5142e00035d498790a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "325"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"145-eznDbURs9kKB1ANmD5DhOFGDbhk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:58:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"66fa9f9a8645d1244bee1bd4\",\n            \"user\": \"66fa9cce42e00035d49878fa\",\n            \"todoList\": \"66fa9d5142e00035d498790a\",\n            \"title\": \"item 1 list 1\",\n            \"description\": \"this is a item 1 added to list 1\",\n            \"priority\": \"2\"\n        }\n    ],\n    \"pagination\": {\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10,\n        \"nextPage\": null,\n        \"page\": 1,\n        \"totalDocs\": 1,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "1-list 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item?page=1&limit=10&todoList=66faa0a79b99201f638a03cf",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "todoList",
+											"value": "66faa0a79b99201f638a03cf"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-dLwjdXM4QU3dKY1aIh8bg+CjC/8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:12.940Z\",\n    \"path\": \"/api/v1/todo-item?page=1&limit=10&todoList=66faa0a79b99201f638a03cf\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "2- add todoitem to todolist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"item 1 list 1\",\r\n    \"description\": \"this is a item 1 added to list 1\",\r\n    \"todoList\": \"66faa0a79b99201f638a03cf\",\r\n    \"priority\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-item",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-item"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "2- add todoitem to todolist 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"item 1 list 1\",\r\n    \"description\": \"this is a item 1 added to list 1\",\r\n    \"todoList\": \"66fa9d5142e00035d498790a\",\r\n    \"priority\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-NP0DoAzaGIa27GXjqJvM0cjCpe8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 12:54:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOITEM_CREATED_SUCCESSFULLY\"\n}"
+						},
+						{
+							"name": "2- add todoitem to todolist 401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"item 1 list 1\",\r\n    \"description\": \"this is a item 1 added to list 1\",\r\n    \"todoList\": \"66faa0a79b99201f638a03cf\",\r\n    \"priority\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-Lxw8JF/9XLi3ok7dPyEegH6gMZM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:20.905Z\",\n    \"path\": \"/api/v1/todo-item\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "3- update todoitem",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"item2 updated item 3\"\r\n    // \"description\": \"this is a item 5 added to list 2 updateds\",\r\n    // \"priority\": 1,\r\n    // \"todoList\": \"66f9cafa3dae20da6751e993\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-item",
+								"66faa0f49b99201f638a03e9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3- update todoitem 200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"item2 updated item 3\"\r\n    // \"description\": \"this is a item 5 added to list 2 updateds\",\r\n    // \"priority\": 1,\r\n    // \"todoList\": \"66f9cafa3dae20da6751e993\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66fa9f9a8645d1244bee1bd4",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66fa9f9a8645d1244bee1bd4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-jxRDIF1jqRWn356LQyAPXdi3MKk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:00:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOItem_UPDATED_SUCCESSFULLY\"\n}"
+						},
+						{
+							"name": "3- update todoitem 401",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"item2 updated item 3\"\r\n    // \"description\": \"this is a item 5 added to list 2 updateds\",\r\n    // \"priority\": 1,\r\n    // \"todoList\": \"66f9cafa3dae20da6751e993\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66faa0f49b99201f638a03e9"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-IfSdvTD8Tw1RGMJffLquoYOeFKw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:28.475Z\",\n    \"path\": \"/api/v1/todo-item/66faa0f49b99201f638a03e9\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "4- delete todoitem",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-item",
+								"66faa0f49b99201f638a03e9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4- delete todoitem 200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66faa0f49b99201f638a03e9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-HWMrtSrTlMyExCN9CSdEBgrWuP4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:01:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success.TODOITEM_DELETED_SUCCESSFULLY\"\n}"
+						},
+						{
+							"name": "4- delete todoitem 401",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66faa0f49b99201f638a03e9",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66faa0f49b99201f638a03e9"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-vuC94EWLhmwGl4vzp48hSWxPNPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:36.260Z\",\n    \"path\": \"/api/v1/todo-item/66faa0f49b99201f638a03e9\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "5- detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/todo-item/66faa0bb9b99201f638a03d8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"todo-item",
+								"66faa0bb9b99201f638a03d8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5- detail 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66faa0bb9b99201f638a03d8",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66faa0bb9b99201f638a03d8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c2-Z/VEcOMRoV8CaIyzR2Q8bVweQBU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:01:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"66faa0bb9b99201f638a03d8\",\n    \"user\": \"66fa9cce42e00035d49878fa\",\n    \"todoList\": \"66faa0a79b99201f638a03cf\",\n    \"title\": \"item 1 list 1\",\n    \"description\": \"this is a item 1 added to list 1\",\n    \"priority\": \"2\"\n}"
+						},
+						{
+							"name": "5- detail 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/todo-item/66faa0bb9b99201f638a03d8",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"todo-item",
+										"66faa0bb9b99201f638a03d8"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-WrnttbCoBTKObQeelAM2ZkEIUcA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Sep 2024 13:02:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"timestamp\": \"2024-09-30T13:02:48.504Z\",\n    \"path\": \"/api/v1/todo-item/66faa0bb9b99201f638a03d8\",\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

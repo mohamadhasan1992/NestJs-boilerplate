@@ -22,17 +22,13 @@ export class CreateTodoItemCommandHandler implements ICommandHandler<CreateTodoI
       todoList
     } = createTodoItemDto;
 
-    const newTodoItem = this.eventPublisher.mergeObjectContext(
-      await this.todoItemFactory.create(
-        userId, 
-        title,
-        todoList,
-        description,
-        priority
-      )
-    );
-    newTodoItem.newTodoItemCreated()
-    newTodoItem.commit();
+    await this.todoItemFactory.create(
+      userId, 
+      title,
+      todoList,
+      description,
+      priority
+    )
     
     return {
       message: 

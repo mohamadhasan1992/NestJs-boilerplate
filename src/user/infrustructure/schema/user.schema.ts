@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from 'src/shared';
 
 
@@ -15,4 +15,11 @@ export class UserSchema extends IdentifiableEntitySchema {
     refreshToken?: string;
 }
 
+export const UserDocumentFactory = SchemaFactory.createForClass(UserSchema)
 
+
+UserDocumentFactory.virtual('TodoLists', {
+    ref: () => "TodoList",
+    localField: '_id',
+    foreignField: 'user'
+});

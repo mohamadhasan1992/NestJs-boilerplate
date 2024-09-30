@@ -14,6 +14,6 @@ export class getTodoItemQueryHandler implements IQueryHandler<GetTodoItemQuery> 
   ) {}
 
   async execute({filterQuery}: GetTodoItemQuery) {
-    return this.todoItemRepository.findAll(filterQuery)
+    return await this.todoItemRepository.findAll(filterQuery)
   }
 }

@@ -14,7 +14,23 @@ export class getTodoListDetalHandler implements IQueryHandler<GetTodoListDetailQ
   ) {}
 
   async execute({todoListId}: GetTodoListDetailQuery) {
-    const todoList = await this.todoListRepository.findOneById(todoListId)
+    const todoList = await this.todoListRepository.findOneById(
+      todoListId, 
+      [
+        {
+          path: "TodoItems",
+          model: "TodoItem",
+          select: [
+            "title",
+            "description"
+          ],
+          options: {
+            skip: 0,
+            limit: 10,
+          },
+        }
+      ]
+    )
 
     if(!!todoList){
       return todoList

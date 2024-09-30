@@ -2,8 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { IBcryptService, IUserRepository, TokenPayload } from 'src/shared/adapters';
-import { EnvironmentConfigService } from '../config';
+import { IBcryptService, IUserRepository, JWTConfig, TokenPayload } from 'src/shared/adapters';
 import { LoggerService } from '../logger';
 
 
@@ -11,7 +10,8 @@ import { LoggerService } from '../logger';
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh-token') {
   constructor(
-    private readonly configService: EnvironmentConfigService,
+    @Inject("JwtConfig")
+    private readonly jwtConfig: JWTConfig,
     private readonly logger: LoggerService,
     @Inject("UserRepository")
     private readonly userRepository: IUserRepository,
@@ -24,7 +24,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
           return request?.cookies?.Refresh;
         },
       ]),
-      secretOrKey: configService.getJwtRefreshSecret(),
+      secretOrKey: jwtConfig.getJwtRefreshSecret(),
       passReqToCallback: true,
     });
   }

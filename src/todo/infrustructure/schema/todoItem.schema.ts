@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IdentifiableEntitySchema } from '../../../shared/database/identifiable-entity.schema';
 import mongoose from 'mongoose';
 import { PriorityEnum } from 'src/todo/domain/object-values/Priority.enum';
@@ -23,3 +23,5 @@ export class TodoItemSchema extends IdentifiableEntitySchema {
     priority: PriorityEnum;
 }
 
+
+export const TodoItemDocumentFactory = SchemaFactory.createForClass(TodoItemSchema)

@@ -14,7 +14,7 @@ export class getTodoItemDetailHandler implements IQueryHandler<GetTodoItemDetail
   ) {}
 
   async execute({todoItemId}: GetTodoItemDetailQuery) {
-    const todoItem = await this.todoItemRepository.findOneById(todoItemId)
+    const todoItem = await this.todoItemRepository.findOne({_id: todoItemId})
     if(!!todoItem){
       return todoItem
     }else{

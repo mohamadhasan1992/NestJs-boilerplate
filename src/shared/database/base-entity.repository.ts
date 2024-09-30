@@ -1,9 +1,10 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { FilterQuery, Types } from 'mongoose';
+import { FilterQuery, PopulateOptions, Types } from 'mongoose';
 import { EntityRepository } from './entity.repository';
-
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
 import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
+
+
 
 export abstract class BaseEntityRepository<
   TSchema extends IdentifiableEntitySchema,
@@ -18,8 +19,8 @@ export abstract class BaseEntityRepository<
     );
   }
 
-  async findOneById(id: string): Promise<TEntity> {
-    return this.findOne({ _id: new Types.ObjectId(id) } as FilterQuery<TSchema>);
+  async findOneById(id: string, popOptions?: PopulateOptions[], select?: string[]): Promise<TEntity> {
+    return this.findOne({ _id: new Types.ObjectId(id) } as FilterQuery<TSchema>, popOptions, select);
   }
 
   async findAll(filterQuery: FilterQuery<TSchema>): Promise<IPaginationData<TEntity>> {

@@ -1,11 +1,17 @@
 import { Injectable } from "@nestjs/common";
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { TodoListSchema } from "../schema/todoList.schema";
 import { TodoList } from "src/todo/domain/entities/todoList";
 import { EntitySchemaFactory } from "src/shared";
+import { TodoItem } from "src/todo/domain/entities/todoItem";
 
 
-
+export interface TodoListSchemaWithTodoItems extends Document {
+    _id: mongoose.Types.ObjectId;
+    user: string;
+    title: string;
+    TodoItems?: TodoItem[]; 
+  }
 
 
 @Injectable()
@@ -17,11 +23,12 @@ export class TodoListSchemaFactory implements EntitySchemaFactory<TodoListSchema
             user: todoList.getUser()
         }
     }
-    createFromSchema(todoList: TodoListSchema): TodoList {
+    createFromSchema(todoList: TodoListSchemaWithTodoItems): TodoList {
         return new TodoList(
             todoList._id.toHexString(),
             todoList.user,
             todoList.title,
+            todoList.TodoItems
         )
     }
     

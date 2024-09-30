@@ -1,22 +1,20 @@
 import { NotFoundException } from '@nestjs/common';
-import { AggregateRoot } from '@nestjs/cqrs';
 import {
   FilterQuery,
   Model,
   PopulateOptions
 } from 'mongoose';
-
-import { EntitySchemaFactory } from './entity-schema.factory';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
 import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
+import { BaseSchemaFactory } from './base-schema.factory';
 
-export abstract class EntityRepository<
+export abstract class BaseRepository<
   TSchema extends IdentifiableEntitySchema,
-  TEntity extends AggregateRoot
+  TEntity
 > {
   constructor(
     protected readonly entityModel: Model<TSchema>,
-    protected readonly entitySchemaFactory: EntitySchemaFactory<
+    protected readonly entitySchemaFactory: BaseSchemaFactory<
       TSchema,
       TEntity
     >,
@@ -41,17 +39,8 @@ export abstract class EntityRepository<
     return this.entitySchemaFactory.createFromSchema(entityDocument as unknown as TSchema);
   }
 
-  protected async find(
-    entityFilterQuery?: FilterQuery<TSchema>,
-  ): Promise<TEntity[]> {
-    return (
-      await this.entityModel.find(entityFilterQuery, {}, { lean: true })
-    ).map(entityDocument =>
-      this.entitySchemaFactory.createFromSchema(entityDocument as unknown as TSchema),
-    );
-  }
 
-  protected async findPaginated(
+  protected async findAll(
     entityFilterQuery?: FilterQuery<TSchema>,
     popOptions?: PopulateOptions[],
     fields?: string[] 
