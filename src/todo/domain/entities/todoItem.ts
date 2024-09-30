@@ -43,7 +43,7 @@ export class TodoItem{
     ) {
       this.title = title || this.title; 
       this.description = description || this.description; 
-      this.priority = priority || this.priority; 
+      this.priority = priority !== undefined && priority !== null ? priority : this.priority
       this.todoList = todoList || this.todoList; 
     }
 }

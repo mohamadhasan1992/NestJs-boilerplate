@@ -103,7 +103,7 @@ export abstract class BaseRepository<
         lean: true,
       },
     );
-
+    console.log("updatedEntityDocument", updatedEntityDocument)
     if (!updatedEntityDocument) {
       throw new NotFoundException('Unable to find the entity to replace.');
     }
