@@ -1,10 +1,10 @@
 import { FilterQuery } from "mongoose";
-import { TodoItem } from "src/domain/entities/todoItem";
-import { TodoList } from "src/domain/entities/todoList";
-import { User } from "src/domain/entities/user";
-import { TodoItemSchema } from "src/infrustructure/schema/todoItem.schema";
-import { TodoListSchema } from "src/infrustructure/schema/todoList.schema";
 import { IPaginationData } from "./pagination.interfac";
+import { User } from "src/user/domain/entities/user";
+import { TodoList } from "src/todo/domain/entities/todoList";
+import { TodoListSchema } from "src/todo/infrustructure/schema/todoList.schema";
+import { TodoItem } from "src/todo/domain/entities/todoItem";
+import { TodoItemSchema } from "src/todo/infrustructure/schema/todoItem.schema";
 
 
 

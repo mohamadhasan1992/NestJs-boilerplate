@@ -1,7 +1,8 @@
-import { TodoItem } from "src/domain/entities/todoItem";
-import { TodoList } from "src/domain/entities/todoList";
-import { User } from "src/domain/entities/user";
-import { PriorityEnum } from "src/domain/object-values/Priority.enum";
+import { TodoItem } from "src/todo/domain/entities/todoItem";
+import { TodoList } from "src/todo/domain/entities/todoList";
+import { PriorityEnum } from "src/todo/domain/object-values/Priority.enum";
+import { User } from "src/user/domain/entities/user";
+
 
 
 export interface IUserEntityFactory {

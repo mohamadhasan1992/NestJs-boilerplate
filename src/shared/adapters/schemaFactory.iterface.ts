@@ -1,9 +1,10 @@
-import { UserSchema } from "src/infrustructure/schema/user.schema";
-import { TodoListSchema } from "src/infrustructure/schema/todoList.schema";
-import { TodoItemSchema } from "src/infrustructure/schema/todoItem.schema";
-import { User } from "src/domain/entities/user";
-import { TodoList } from "src/domain/entities/todoList";
-import { TodoItem } from "src/domain/entities/todoItem";
+import { TodoItem } from "src/todo/domain/entities/todoItem"
+import { TodoList } from "src/todo/domain/entities/todoList"
+import { TodoItemSchema } from "src/todo/infrustructure/schema/todoItem.schema"
+import { TodoListSchema } from "src/todo/infrustructure/schema/todoList.schema"
+import { User } from "src/user/domain/entities/user"
+import { UserSchema } from "src/user/infrustructure/schema/user.schema"
+
 
 export interface IUserSchemaFactory{
     create(user: User): UserSchema,

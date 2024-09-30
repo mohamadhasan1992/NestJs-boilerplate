@@ -2,9 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
-import { LoggerService } from './infrustructure/logger/logger.service';
-import { AllExceptionFilter } from './presentation/filter/exception.filter';
-import { LoggingInterceptor } from './presentation/interceptors/logger.interceptor';
+import { AllExceptionFilter, LoggerService, LoggingInterceptor } from './shared';
 
 
 
