@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import {  ITodoItemRepository} from 'src/shared/adapters';
+import {  ITodoItemRepository} from 'shared/adapters';
 import { UpdateTodoItemCommand } from '../../impl/todoItem/update-todoItem.command';
 
 

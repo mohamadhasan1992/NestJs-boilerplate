@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { UpdateRefreshTokenCommand } from "../../impl/auth/update-refresh-token-command";
-import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from "src/shared/adapters";
+import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from "shared/adapters";
 
 
 

@@ -8,7 +8,7 @@ import {
 
 import { EntitySchemaFactory } from './entity-schema.factory';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
-import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
+import { IPaginationData } from 'shared/adapters/pagination.interfac';
 
 export abstract class EntityRepository<
   TSchema extends IdentifiableEntitySchema,

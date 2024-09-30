@@ -1,8 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { FilterQuery } from 'mongoose';
-import { CurrentUser, JwtAuthGuard } from 'src/shared';
-import { IAuthenticatedUser } from 'src/shared/adapters';
+import { IAuthenticatedUser } from 'shared/adapters';
+import { CurrentUser } from 'shared/decorators';
+import { JwtAuthGuard } from 'shared/guards';
 import { CreateTodoListCommand } from 'src/todo/application/command/impl/todoList/create-todoList.command';
 import { DeleteTodoListCommand } from 'src/todo/application/command/impl/todoList/delete-todoList-command';
 import { UpdateTodoListCommand } from 'src/todo/application/command/impl/todoList/update-todoList.command';

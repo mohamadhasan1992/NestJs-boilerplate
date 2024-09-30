@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ILogger } from 'src/shared/adapters';
+import { ILogger } from 'shared/adapters';
 
 
 

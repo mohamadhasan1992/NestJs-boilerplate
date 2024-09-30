@@ -1,6 +1,6 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject } from '@nestjs/common';
-import {  ITodoItemEntityFactory } from 'src/shared/adapters';
+import {  ITodoItemEntityFactory } from 'shared/adapters';
 import { CreateTodoItemCommand } from '../../impl/todoItem/create-todoItem.command';
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { DatabaseConfig, JWTConfig } from 'src/shared/adapters';
+import { DatabaseConfig, JWTConfig } from 'shared/adapters';
 
 
 @Injectable()

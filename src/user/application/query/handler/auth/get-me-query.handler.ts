@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Inject, NotFoundException } from '@nestjs/common';
 import { GetMeQuery } from '../../impl/auth/get-me-query';
-import { IUserRepository } from 'src/shared/adapters';
+import { IUserRepository } from 'shared/adapters';
 
 
 

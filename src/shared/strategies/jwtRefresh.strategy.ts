@@ -2,7 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { IBcryptService, IUserRepository, JWTConfig, TokenPayload } from 'src/shared/adapters';
+import { IBcryptService, IUserRepository, JWTConfig, TokenPayload } from 'shared/adapters';
 import { LoggerService } from '../logger';
 
 

@@ -1,6 +1,6 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject } from '@nestjs/common';
-import {  ITodoListEntityFactory } from 'src/shared/adapters';
+import {  ITodoListEntityFactory } from 'shared/adapters';
 import { CreateTodoListCommand } from '../../impl/todoList/create-todoList.command';
 
 

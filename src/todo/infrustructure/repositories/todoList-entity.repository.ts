@@ -2,9 +2,9 @@ import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { TodoListSchema } from "../schema/todoList.schema";
-import { ITodoListSchemaFactory } from "src/shared/adapters";
+import { ITodoListSchemaFactory } from "shared/adapters";
 import { TodoList } from "src/todo/domain/entities/todoList";
-import { BaseEntityRepository } from "src/shared";
+import { BaseEntityRepository } from "shared/database";
 
 
 

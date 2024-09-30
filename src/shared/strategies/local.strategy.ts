@@ -1,8 +1,8 @@
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { IBcryptService, IUserRepository } from 'src/shared/adapters';
 import { LoggerService } from '../logger';
+import { IBcryptService, IUserRepository } from 'shared/adapters';
 
 
 

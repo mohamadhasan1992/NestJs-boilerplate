@@ -2,7 +2,7 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import { FilterQuery, PopulateOptions, Types } from 'mongoose';
 import { EntityRepository } from './entity.repository';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
-import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
+import { IPaginationData } from 'shared/adapters/pagination.interfac';
 
 
 

@@ -1,6 +1,6 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import {  ITodoListRepository } from 'src/shared/adapters';
+import {  ITodoListRepository } from 'shared/adapters';
 import { DeleteTodoListCommand } from '../../impl/todoList/delete-todoList-command';
 
 

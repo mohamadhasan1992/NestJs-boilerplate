@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { LoginCommand } from '../../impl/auth/login.command';
-import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from 'src/shared/adapters';
+import { IBcryptService, IJwtService, IJwtServicePayload, IUserRepository, JWTConfig } from 'shared/adapters';
 
 
 

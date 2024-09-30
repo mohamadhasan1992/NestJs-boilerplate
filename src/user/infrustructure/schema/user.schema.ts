@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IdentifiableEntitySchema } from 'src/shared';
+import { IdentifiableEntitySchema } from 'shared/database';
 
 
 @Schema({versionKey: false, collection: "User"})

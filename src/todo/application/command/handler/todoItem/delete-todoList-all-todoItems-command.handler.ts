@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {  Inject } from '@nestjs/common';
-import {  ITodoItemRepository } from 'src/shared/adapters';
+import {  ITodoItemRepository } from 'shared/adapters';
 import { DeleteTodoListAllTodoItemsCommand } from '../../impl/todoItem/delete-todoList-all-todoItem.command';
 
 

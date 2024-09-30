@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
-import { CurrentUser, IAuthenticatedUser, JwtAuthGuard, LoginGuard } from 'src/shared';
+import { IAuthenticatedUser } from 'shared/adapters';
+import { CurrentUser } from 'shared/decorators';
+import { JwtAuthGuard, LoginGuard } from 'shared/guards';
 import { LoginCommand } from 'src/user/application/command/impl/auth/login.command';
 import { SignUpCommand } from 'src/user/application/command/impl/auth/signup.command';
 import { LoginUserDto } from 'src/user/application/dto/auth/login-user.dto';
@@ -37,8 +39,9 @@ export class AuthController {
         const {accessTokenCookie, refreshTokenCookie} = await this.commandBus.execute(new LoginCommand(loginUserDto))
         this.setHeaders(response, 'Authentication', accessTokenCookie)
         this.setHeaders(response, 'Refresh', refreshTokenCookie)
-        response.send({
-            message: "SUCCESS.LOGEDIN"
+        response.status(200).send({
+            message: "SUCCESS.LOGEDIN",
+            token: accessTokenCookie
         });
     }
 
@@ -63,7 +66,7 @@ export class AuthController {
         yesterday.setDate(yesterday.getDate() - 1);
         this.setHeaders(response, 'Authentication', "removed")
         this.setHeaders(response, 'Refresh', "removed")
-        response.send({
+        response.status(200).send({
             message: "success.LOGEDOUT"
         })
     }
@@ -71,8 +74,8 @@ export class AuthController {
 
     setHeaders(response: Response, identifier: string, token: string){
         return response.cookie(identifier, token, {
-            httpOnly: true,
-            sameSite: "none",
+            // httpOnly: true,
+            // sameSite: "none",
             secure: true,
         }) 
     }

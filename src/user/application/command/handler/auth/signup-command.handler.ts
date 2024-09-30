@@ -1,7 +1,7 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { BadRequestException, Inject } from '@nestjs/common';
 import { SignUpCommand } from '../../impl/auth/signup.command';
-import { IUserEntityFactory, IUserRepository } from 'src/shared/adapters';
+import { IUserEntityFactory, IUserRepository } from 'shared/adapters';
 
 
 

@@ -2,7 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { IUserRepository, TokenPayload } from 'src/shared/adapters';
+import { IUserRepository, TokenPayload } from 'shared/adapters';
 import { LoggerService } from '../logger';
 
 
@@ -17,7 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
-          return request?.cookies?.Authentication;
+          return this.extractTokenFromHeader(request) || request?.cookies?.Authentication;
         },
       ]),
       secretOrKey: process.env.JWT_SECRET,
@@ -37,5 +37,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       _id: user.getId(),
       email: user.getEmail(),
     };
+  }
+
+  private extractTokenFromHeader(request: Request): string | undefined {
+    const [type, token] = request?.headers?.authorization?.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 }

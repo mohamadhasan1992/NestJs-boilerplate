@@ -1,8 +1,8 @@
 import { Types } from "mongoose";
 import { Inject, Injectable } from "@nestjs/common";
-import { IBcryptService, IUserRepository } from "src/shared/adapters";
-import { EntityFactory } from "src/shared";
+import { IBcryptService, IUserRepository } from "shared/adapters";
 import { User } from "../entities/user";
+import { EntityFactory } from "shared/database";
 
 
 

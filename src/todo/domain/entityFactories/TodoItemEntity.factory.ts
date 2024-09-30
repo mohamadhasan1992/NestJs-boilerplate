@@ -1,9 +1,9 @@
 import { Types } from "mongoose";
 import { Inject, Injectable } from "@nestjs/common";
 import { PriorityEnum } from "../object-values/Priority.enum";
-import { ITodoItemRepository } from "src/shared/adapters";
+import { ITodoItemRepository } from "shared/adapters";
 import { TodoItem } from "../entities/todoItem";
-import { EntityFactory } from "src/shared";
+import { EntityFactory } from "shared/database";
 
 
 

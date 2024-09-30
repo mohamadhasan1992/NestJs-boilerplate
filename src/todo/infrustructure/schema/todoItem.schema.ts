@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IdentifiableEntitySchema } from '../../../shared/database/identifiable-entity.schema';
 import mongoose from 'mongoose';
+import { IdentifiableEntitySchema } from 'shared/database';
 import { PriorityEnum } from 'src/todo/domain/object-values/Priority.enum';
 
 

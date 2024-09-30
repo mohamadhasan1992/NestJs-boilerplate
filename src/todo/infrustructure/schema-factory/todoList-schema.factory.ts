@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 import mongoose, { Types } from "mongoose";
 import { TodoListSchema } from "../schema/todoList.schema";
 import { TodoList } from "src/todo/domain/entities/todoList";
-import { EntitySchemaFactory } from "src/shared";
 import { TodoItem } from "src/todo/domain/entities/todoItem";
+import { EntitySchemaFactory } from "shared/database";
 
 
 export interface TodoListSchemaWithTodoItems extends Document {

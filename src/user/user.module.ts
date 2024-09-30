@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 
 import { CqrsModule } from '@nestjs/cqrs';
-import { DatabaseModule } from 'src/shared/database/database.module';
+import { DatabaseModule } from 'shared/database/database.module';
 import { UserDocumentFactory } from './infrustructure/schema/user.schema';
-import { JwtModule as JwtTokenModule } from 'src/shared/services/jwt/jwt.module';
+import { JwtModule as JwtTokenModule } from 'shared/services/jwt/jwt.module';
 import { AllControllers } from './presentation';
 import { UserEntityRepository } from './infrustructure/repositories/user-entity.repository';
 import { UserSchemaFactory } from './infrustructure/schema-factory/user-schema.factory';
@@ -12,7 +12,10 @@ import { CommandHandlers } from './application/command';
 import { QueryHandlers } from './application/query';
 import { EventHandlers } from './application/event';
 import { allSagas } from './application/saga';
-import { AuthStrategies, BcryptService, EnvironmentConfigService, JwtTokenService, LoggerModule } from 'src/shared';
+import { LoggerModule } from 'shared/logger';
+import { BcryptService, JwtTokenService } from 'shared/services';
+import { EnvironmentConfigService } from 'shared/config';
+import { AuthStrategies } from 'shared/strategies';
 
 
 

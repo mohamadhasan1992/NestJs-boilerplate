@@ -2,9 +2,9 @@ import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { UserSchema } from "../schema/user.schema";
-import { IUserSchemaFactory } from "src/shared/adapters";
-import { BaseEntityRepository } from "src/shared";
+import { IUserSchemaFactory } from "shared/adapters";
 import { User } from "src/user/domain/entities/user";
+import { BaseEntityRepository } from "shared/database";
 
 
 

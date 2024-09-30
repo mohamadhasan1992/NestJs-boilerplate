@@ -1,8 +1,8 @@
 import { Types } from "mongoose";
 import { Inject, Injectable } from "@nestjs/common";
 import { TodoList } from "../entities/todoList";
-import { ITodoListRepository } from "src/shared/adapters";
-import { EntityFactory } from "src/shared";
+import { ITodoListRepository } from "shared/adapters";
+import { EntityFactory } from "shared/database";
 
 
 

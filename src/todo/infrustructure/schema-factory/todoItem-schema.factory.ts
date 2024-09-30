@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
 import { TodoItemSchema } from "../schema/todoItem.schema";
-import { BaseSchemaFactory} from "src/shared";
 import { TodoItem } from "src/todo/domain/entities/todoItem";
+import { BaseSchemaFactory } from "shared/database";
 
 
 

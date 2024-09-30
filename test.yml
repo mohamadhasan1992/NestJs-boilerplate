@@ -3,24 +3,22 @@ version: '3.8'
 services:
   todolist:
     build: .
-    container_name: todolist
+    container_name: todolist-test
     restart: always
     ports:
       - '3000:3000'
     environment:
-      ENV_PATH: ./env/local.env
+      ENV_PATH: ./env/test.env
     depends_on:
       - mongo
     networks:
       - app-net
   mongo:
     image: mongo:5.0
-    container_name: mongodb-todolist
+    container_name: mongodb-todolist-test
     restart: always
     ports:
       - '27017:27017'
-    volumes:
-      - mongo-data:/data/db
     networks:
       - app-net
   redis:

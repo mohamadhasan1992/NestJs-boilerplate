@@ -5,7 +5,7 @@ import {
   PopulateOptions
 } from 'mongoose';
 import { IdentifiableEntitySchema } from './identifiable-entity.schema';
-import { IPaginationData } from 'src/shared/adapters/pagination.interfac';
+import { IPaginationData } from 'shared/adapters/pagination.interfac';
 import { BaseSchemaFactory } from './base-schema.factory';
 
 export abstract class BaseRepository<

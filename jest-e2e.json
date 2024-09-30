@@ -1,0 +1,16 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testRegex": ".*\\.e2e-spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^shared/(.*)$": "<rootDir>/src/shared/$1",
+    "^src/(.*)$": "<rootDir>/src/$1" 
+  },
+  "coverageDirectory": "./coverage",
+  "testEnvironment": "node",
+  "testTimeout": 30000,
+  "setupFiles": ["./jest.setup.js"]
+}

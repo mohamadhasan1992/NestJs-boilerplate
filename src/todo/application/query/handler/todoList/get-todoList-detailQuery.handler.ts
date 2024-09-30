@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Inject, NotFoundException } from '@nestjs/common';
-import { ITodoListRepository } from 'src/shared/adapters';
+import { ITodoListRepository } from 'shared/adapters';
 import { GetTodoListDetailQuery } from '../../impl/todoList/get-todoList-detail-query';
 
 
